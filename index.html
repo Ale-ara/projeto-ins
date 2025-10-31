@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>[INS] Mensagem Privada</title>
+ <link rel="icon" href="https://www.habbo.com.br/habbo-imaging/badge/b09064s43131s50134s17113s171153f3edc7f555be912c2392e285b05bd34.gif" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --ins: #0059a7;
+  --amarelo: #ffcc00;
+  --fundo: #0a0a0f;
+  --texto: #f4f4f4;
+  --glass: rgba(255, 255, 255, 0.05);
+}
+
+/* 🌐 BASE */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  overflow-x: hidden;
+}
+
+ html, body {
+    cursor: none;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  .custom-cursor img {
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+/* Container com as duas telas */
+.container {
+  display: flex;
+  width: 200%;
+  transform: translateX(0%);
+  transition: transform 0.6s ease-in-out;
+}
+
+
+
+/* 🔹 SEÇÃO PRINCIPAL */
+#ins {
+  background: linear-gradient(90deg, var(--ins) 20%, rgba(16, 22, 98, 0.748) 100%),
+              url(https://i.imgur.com/5HBJY5z.png) right center / cover no-repeat;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#ins::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+#ins .content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+#ins img.logo {
+  width: 200px;
+  margin-bottom: 20px;
+  animation: flutuar 3s ease-in-out infinite;
+}
+@keyframes flutuar {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+#ins h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin: 0;
+}
+
+#ins p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  margin-top: 10px;
+  color: #e6e6e6;
+  line-height: 1.6;
+}
+
+/* BOTÕES */
+.botao-container {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.botao {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background: transparent;
+  border: 1.5px solid rgba(0, 140, 255, 0.7);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.botao::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(0,140,255,0.3), transparent);
+  transform: skewX(-25deg);
+  transition: all 0.5s ease;
+}
+.botao:hover::before {
+  left: 125%;
+}
+.botao:hover {
+  border-color: #008cff;
+  box-shadow: 0 0 10px #008cff80;
+  transform: translateY(-2px);
+}
+.botao i {font-size: 1rem;}
+
+/* 🔸 SEÇÃO DE MENSAGEM */
+#mensagem {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, var(--ins) 20%, rgba(16, 22, 98, 0.748) 100%),
+              url(https://i.imgur.com/5HBJY5z.png) right center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#mensagem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  text-align: center;
+  width: 360px;
+  max-width: 90%;
+  position: relative;
+  z-index: 2;
+  overflow: visible; /* 👈 importante pra imagem aparecer fora do card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Imagem atrás do card */
+.form-card::before {
+  content: "";
+  position: absolute;
+  top: -120px; /* 👈 sobe a imagem pra ficar acima do card */
+  left: 50%;
+  width: 100px; /* 👈 tamanho da imagem (ajuste conforme necessário) */
+  height: 200px;
+  background: url('https://i.imgur.com/2HJ0aLw.png') center/contain no-repeat;
+  transform: translateX(-50%);
+  z-index: -1; /* 👈 mantém atrás do conteúdo */
+  opacity: 1; /* 👈 deixa a imagem visível */
+  filter: none; /* 👈 remove o blur pra ficar nítida */
+}
+
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+
+
+.form-card h2 {
+  color: var(--amarelo);
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+input {
+  width: 100%;
+  padding: 14px 12px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 18px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+  backdrop-filter: blur(3px);
+}
+
+input:focus {
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 0 2px var(--amarelo);
+}
+
+button {
+  width: 100%;
+  background: var(--ins);
+  border: none;
+  padding: 13px 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  letter-spacing: 0.3px;
+}
+
+button:hover {
+  background: #0070d1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#voltarBtn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background: var(--ins);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: none; /* começa escondido */
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px #0059a780;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+#voltarBtn:hover {
+  transform: translateX(-3px);
+  background: #0070d1;
+}
+
+
+/* 🔽 DROPDOWN ESTILIZADO */
+.dropdown {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#dropdownBtn {
+  width: 100%;
+  background: #2E8BE8;
+  color: #dadada;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
+  text-align: center;      /* garante alinhamento do texto se quebrar linha */
+}
+
+
+#dropdownBtn i {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background: rgba(20, 20, 30, 0.95);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  z-index: 999; /* aumentei pra evitar sobreposição errada */
+
+  /* 🧩 Aqui está a mágica */
+  max-height: 280px;       /* Limite de altura */
+  overflow-y: auto;        /* Cria rolagem interna */
+  scrollbar-width: thin;   /* Firefox */
+}
+
+/* 🎨 Rolagem estilizada */
+.dropdown-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background-color: #2E8BE8;
+  border-radius: 4px;
+}
+
+.option {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease;
+  font-size: 0.65rem;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.azul { color: #4cb2ff; }
+.verde { color: #2ecc71; }
+.vermelho { color: #ff4c4c; }
+.roxo { color: #a86eff; }
+
+.dropdown.ativo #dropdownBtn i {
+  transform: rotate(180deg);
+}
+.dropdown.ativo .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-5px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* 🎨 Scrollbar moderno e suave */
+.dropdown-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2E8BE8, #005bbf);
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(46, 139, 232, 0.6);
+  transition: all 0.3s ease;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4ca8ff, #0077ff);
+  box-shadow: 0 0 12px rgba(46, 139, 232, 0.9);
+}
+
+/* Firefox */
+.dropdown-content {
+  scrollbar-width: thin;
+  scrollbar-color: #2E8BE8 rgba(255, 255, 255, 0.05);
+}
+
+
+.personagem {
+  display: none;
+  position: fixed;
+  bottom: 0px; /* mais baixo na tela */
+  left: 30px;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.personagem-img {
+  width: 90px;
+  height: auto;
+}
+
+/* ANIMAÇÃO DE ENTRADA (fade + slide-up) */
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+    transform: translateY(40px); /* só um leve slide para cima */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Classe que ativa a animação */
+.animar-aparecer {
+  animation: aparecerSuave 0.6s ease-out forwards;
+}
+
+.balao-fala {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #24473c;
+  color: #000;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.3em;
+  max-width: 220px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Triângulo do balão apontando para baixo (para a cabeça) */
+.balao-fala::before {
+  content: '';
+  position: absolute;
+  bottom: -10px; /* mantém o triângulo alinhado à base do balão */
+  left: 50%; /* centraliza horizontalmente */
+  transform: translateX(-50%); /* centraliza exato */
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
+}
+
+/* 📱 RESPONSIVIDADE GERAL */
+
+/* Telas grandes - Monitores Full HD e maiores */
+@media (min-width: 1600px) {
+  #ins h1 { font-size: 3.5rem; }
+  #ins p { font-size: 1.3rem; }
+  .form-card { width: 420px; }
+  .personagem-img { width: 110px; }
+}
+
+/* Notebooks e PCs médios (1366px a 1599px) */
+@media (max-width: 1599px) and (min-width: 1025px) {
+  #ins h1 { font-size: 2.8rem; }
+  #ins p { font-size: 1.1rem; }
+  .form-card { width: 360px; }
+}
+
+/* Tablets em paisagem e notebooks pequenos */
+@media (max-width: 1024px) and (min-width: 769px) {
+  #ins h1 { font-size: 2.4rem; }
+  #ins p { font-size: 1rem; }
+  .form-card { width: 320px; padding: 30px; }
+  .botao { padding: 10px 20px; font-size: 0.85rem; }
+  .personagem-img { width: 80px; }
+}
+
+/* Tablets em retrato e celulares grandes */
+@media (max-width: 768px) and (min-width: 481px) {
+  #ins h1 { font-size: 2rem; }
+  #ins p { font-size: 0.95rem; }
+  .content { padding: 0 10px; }
+  .form-card { width: 280px; padding: 25px; }
+  .botao { padding: 10px 18px; font-size: 0.8rem; }
+  .personagem { bottom: 15px; left: 15px; }
+  .personagem-img { width: 70px; }
+  .balao-fala { font-size: 13px; max-width: 200px; }
+}
+
+/* Celulares médios e pequenos (Android / iPhone) */
+@media (max-width: 480px) {
+  #ins h1 { font-size: 1.6rem; }
+  #ins p { font-size: 0.85rem; }
+  .content { padding: 0 8px; }
+  .botao { padding: 10px 16px; font-size: 0.75rem; }
+  .form-card { width: 250px; padding: 20px; }
+  .dropdown-content { font-size: 0.9rem; }
+  .personagem { bottom: 10px; left: 10px; }
+  .personagem-img { width: 60px; }
+  .balao-fala { font-size: 12px; max-width: 180px; padding: 10px; }
+}
+
+/* 🌌 POPUP MODERNO (AZUL, TEMA INS) */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(0, 20, 40, 0.6);
+  backdrop-filter: blur(14px);
+  border: 2px solid rgba(0, 140, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 140, 255, 0.4);
+  color: var(--texto);
+  padding: 35px 40px;
+  border-radius: 20px;
+  z-index: 9999;
+  width: 90%;
+  max-width: 480px;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.35s ease;
+  font-family: 'Poppins', sans-serif;
+  pointer-events: none;
+}
+
+/* Ativo */
+.popup.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ✨ CABEÇALHO / TÍTULO do popup */
+.popup h2 {
+  color: #4cb2ff; /* azul neon do seu layout */
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 140, 255, 0.6);
+}
+
+.popup p {
+  font-size: 0.95rem;
+  color: #dce9ff;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* 🔹 INPUTS NO POPUP */
+.popup input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(0, 140, 255, 0.35);
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s ease;
+  backdrop-filter: blur(3px);
+}
+
+.popup input:focus {
+  border-color: #008cff;
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 10px rgba(0, 140, 255, 0.5);
+}
+
+/* 🔹 BOTÕES DO POPUP */
+.popup-buttons button,
+.popup button {
+  background: transparent;
+  border: 1.5px solid rgba(0, 140, 255, 0.7);
+  color: #fff;
+  padding: 10px 18px;
+  margin: 8px 5px;
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.popup-buttons button:hover,
+.popup button:hover {
+  border-color: #00a3ff;
+  box-shadow: 0 0 15px #008cffaa;
+  transform: translateY(-2px);
+}
+
+/* 🌙 ESCURECE O FUNDO */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.35s ease;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#personagemQox {
+  left: 50px; /* posição horizontal diferente se quiser */
+  bottom: 0px; /* mantém embaixo */
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <div class="custom-cursor">
+  <img src="https://www.habbo.com.br/habbo-imaging/badge/b09064s43131s50134s17113s171153f3edc7f555be912c2392e285b05bd34.gif" alt="cursor">
+</div>
+<!-- PRIMEIRA TELA -->
+<section id="primeiraTela">
+  <div class="personagem" id="personagemQox">
+    <img src="https://i.imgur.com/UTJdezH.png" alt="Qox Habbo" class="personagem-img">
+    <div class="balao-fala" id="falaQox">
+      Olá, sou o <b>Qox</b>, criado dessa página, use com moderação!
+    </div>
+  </div>
+</section>
+
+
+<!-- Personagem da segunda página: Lynsk -->
+<div class="personagem" id="personagemLynsk">
+  <img src="https://i.imgur.com/OwK346j.png" alt="Líder Habbo" class="personagem-img">
+  <div class="balao-fala" id="falaBalao">
+    Olá, eu sou a líder <b>Lynsk</b>!<br>
+    Você precisa colocar o nickname do(s) militar(es) que deseja enviar a mensagem privada.<br>
+    Caso seja mais de 1, separe com <b>/</b>.
+  </div>
+</div>
+
+
+  <!-- CONTAINER PRINCIPAL -->
+  <div class="container" id="container">
+    
+    <!-- 🟦 TELA PRINCIPAL -->
+    <section id="ins">
+      <div class="content">
+        <img src="https://i.imgur.com/2HJ0aLw.png" alt="Logo Instrutores" class="logo" />
+        <h1>[INS] Mensagens Privadas</h1>
+        <p>Envie mensagens privadas diretamente para outros instrutores de forma rápida e prática.</p>
+        <div class="botao-container">
+          <a href="#" class="botao" id="abrirFerramenta">
+            Enviar Mensagem <i class="fa-solid fa-paper-plane"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟨 TELA DE MENSAGEM -->
+    <section id="mensagem">
+      <div class="mensagem-container">
+        <div class="form-card">
+         
+          
+          <input type="text" id="usuario" placeholder="Digite o(s) nickname(s) do(s) militar(es)" required>
+
+          <div class="dropdown">
+            <button id="dropdownBtn">
+              <span><i class="fa-solid fa-envelope"></i> SELECIONE A MENSAGEM PRIVADA</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+<div class="dropdown-content" id="dropdownMenu">
+  <!-- Informativo -->
+  <div data-msg="[INS] INFORMATIVO DE PROJETOS" class="option">
+    <i class="fa-solid fa-circle-info azul"></i>[INS] INFORMATIVO DE PROJETOS
+  </div>
+
+  <!-- Aula cancelada -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE AULA CANCELADA" class="option">
+    <i class="fa-solid fa-calendar-xmark azul"></i>[INS] NOTIFICAÇÃO DE AULA CANCELADA
+  </div>
+
+  <!-- Meta negativa -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE META NEGATIVA" class="option">
+  <i class="fa-solid fa-arrow-down azul"></i> [INS] NOTIFICAÇÃO DE META NEGATIVA
+</div>
+
+
+  <!-- Infração -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE INFRAÇÃO (INS A CAP)" class="option">
+    <i class="fa-solid fa-triangle-exclamation azul"></i>[INS] NOTIFICAÇÃO DE INFRAÇÃO (INS A CAP)
+  </div>
+
+  <!-- Observação -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE OBSERVAÇÃO (EST A MIN)" class="option">
+    <i class="fa-solid fa-eye azul"></i>[INS] NOTIFICAÇÃO DE OBSERVAÇÃO (EST A MIN)
+  </div>
+
+  <!-- Medalhas negativas -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE MEDALHAS NEGATIVAS" class="option">
+    <i class="fa-solid fa-medal azul"></i>[INS] NOTIFICAÇÃO DE MEDALHAS NEGATIVAS
+  </div>
+
+  <!-- Advertência interna -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE ADVERTÊNCIA INTERNA" class="option">
+    <i class="fa-solid fa-ban azul"></i>[INS] NOTIFICAÇÃO DE ADVERTÊNCIA INTERNA
+  </div>
+
+  <!-- Rebaixamento -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE REBAIXAMENTO" class="option">
+    <i class="fa-solid fa-arrow-down-long azul"></i>[INS] NOTIFICAÇÃO DE REBAIXAMENTO
+  </div>
+
+  <!-- Expulsão -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE EXPULSÃO" class="option">
+    <i class="fa-solid fa-door-open azul"></i>[INS] NOTIFICAÇÃO DE EXPULSÃO
+  </div>
+
+  <!-- Exoneração -->
+  <div data-msg="[INS] NOTIFICAÇÃO DE EXONERAÇÃO" class="option">
+    <i class="fa-solid fa-user-slash azul"></i>[INS] NOTIFICAÇÃO DE EXONERAÇÃO
+  </div>
+
+  <!-- Promoções -->
+  <div data-msg="[INS] CARTA DE PROMOÇÃO A MONITOR" class="option">
+    <i class="fa-solid fa-user-graduate azul"></i>[INS] CARTA DE PROMOÇÃO A MONITOR
+  </div>
+
+  <div data-msg="[INS] CARTA DE PROMOÇÃO A AVALIADOR" class="option">
+    <i class="fa-solid fa-user-graduate azul"></i>[INS] CARTA DE PROMOÇÃO A AVALIADOR
+  </div>
+
+  <div data-msg="[INS] CARTA DE PROMOÇÃO A CAPACITADOR" class="option">
+    <i class="fa-solid fa-user-graduate azul"></i>[INS] CARTA DE PROMOÇÃO A CAPACITADOR
+  </div>
+
+   <div data-msg="[INS] CARTA DE PROMOÇÃO A ESTAGIARIO" class="option">
+    <i class="fa-solid fa-user-graduate azul"></i>[INS] CARTA DE PROMOÇÃO A ESTAGIÁRIO
+  </div>
+
+  <div data-msg="[INS] CARTA DE PROMOÇÃO A MINISTRO" class="option">
+    <i class="fa-solid fa-user-graduate azul"></i>[INS] CARTA DE PROMOÇÃO A MINISTRO
+  </div>
+</div>
+
+
+          </div>
+
+          <button id="enviarBtn">Enviar</button>
+          
+        </div>
+      </div>
+    </section>
+     <button class="voltar" id="voltarBtn">
+  <i class="fa-solid fa-arrow-left"></i> Voltar
+</button>
+
+  </div>
+</body>
+
+<script>
+const container = document.getElementById('container');
+const abrirFerramenta = document.getElementById('abrirFerramenta');
+const voltarBtn = document.getElementById('voltarBtn');
+const enviarBtn = document.getElementById('enviarBtn');
+const usuarioInput = document.getElementById('usuario');
+const dropdown = document.querySelector('.dropdown');
+const dropdownBtn = document.getElementById('dropdownBtn');
+const dropdownMenu = document.getElementById('dropdownMenu');
+const falaBalao = document.getElementById('falaBalao');
+
+let mensagemSelecionada = null;
+
+voltarBtn.addEventListener('click', () => {
+  telaMensagem.style.display = 'none';
+  telaPrincipal.style.display = 'block';
+  voltarBtn.style.display = 'none'; // esconde novamente
+});
+
+
+// === Abertura e retorno do container ===
+abrirFerramenta.addEventListener('click', e => {
+  e.preventDefault();
+  container.style.transform = 'translateX(-50%)';
+
+  const lynsk = document.getElementById('personagemLynsk');
+  lynsk.style.display = 'flex';
+  lynsk.classList.remove('animar-aparecer');
+  setTimeout(() => lynsk.classList.add('animar-aparecer'), 100);
+});
+
+voltarBtn.addEventListener('click', () => {
+  container.style.transform = 'translateX(0%)';
+  const lynsk = document.getElementById('personagemLynsk');
+  lynsk.style.display = 'none';
+  document.getElementById('falaBalao').innerHTML =
+    "Olá, eu sou a líder <b>Lynsk</b>!<br>Digite o nickname do(s) militar(es) e selecione a mensagem.";
+});
+
+// === Dropdown ===
+dropdownBtn.addEventListener('click', () => dropdown.classList.toggle('ativo'));
+dropdownMenu.querySelectorAll('.option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    mensagemSelecionada = opt.dataset.msg;
+    dropdownBtn.querySelector('span').textContent = opt.textContent.trim();
+    dropdown.classList.remove('ativo');
+  });
+});
+
+// === Mensagens prontas com título ===
+const mensagens = {
+  "[INS] INFORMATIVO DE PROJETOS": {
+    titulo: "[INS] Informativo de Projetos",
+    conteudo: `[center][table  bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table  bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]INFORMATIVO DE PROJETOS[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+As avaliações dos projetos foram realizadas recentemente pelo ministério e liderança. Nela, tivemos contribuições enviadas por militares sendo aprovadas, por isso, recomendamos que fique ciente de todas as alterações.
+
+[center][table  bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ACESSO ÀS PROPOSTAS[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Acesse o [url=https://docs.google.com/spreadsheets/d/1A7s9uh0ninn_kryX-MFFoperb33IB2l9r0lrxne6yHE/edit?usp=sharing][color=#005dad][b]System INS[/b][/color][/url] e fique por dentro de todos os projetos e sugestões aprovados.
+
+[color=#005dad]➥[/color] Caso tenha dúvidas e também deseje enviar uma contribuição, acesse o tópico de orientações e envio, [url=https://www.policiarcc.com/t33708-ins-ouvidoria][color=#005dad][b]clicando aqui.[/b][/color][/url][/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+ "[INS] NOTIFICAÇÃO DE MEDALHAS NEGATIVAS": {
+    titulo: "[INS] Notificação de Medalhas Negativas",
+    conteudo: `[center][table  bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table  bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE AULA CANCELADA[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Em uma atualização das postagens de aulas no System, você acabou tendo um [b](NOME DA AULA)[/b] reprovado pelo motivo de [b](ESCREVER O MOTIVO)[/b].
+
+Por favor, realize a retificação necessária e reposte a sua aula para não prejudicar o praça presente nem a sua meta.
+
+[center][table  bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ORIENTAÇÕES[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Para repostar no System, [url=https://rccsystem.com.br/companhia/instrutores][b][color=#005dad][b]clique aqui.[/b][/color][/b][/url]
+
+[color=#005dad]➥[/color] Para retificar sua postagem no [INS] Relatório de Aulas, [url=https://www.policiarcc.com/t29019-ins-retificacao-de-erros-planilha][b][color=#005dad][b]clique aqui.[/b][/color][/b][/url]
+
+[color=#005dad]➥[/color] Caso possua alguma dúvida sobre sua meta ou a companhia no geral, você pode responder esta Mensagem Privada com sua dúvida, bem como procurar algum superior na companhia para saná-la.[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+
+"[INS] NOTIFICAÇÃO DE ADVERTÊNCIA INTERNA": {
+    titulo: "[INS] Notificação de Advertência Interna ",
+    conteudo: `[center][table  bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table  bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE ADVERTÊNCIA INTERNA[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Por meio desta Mensagem Privada, informa-se que você foi advertido internamente na [b]Companhia dos [color=#00529e]Instrutores[/color][/b]. A seguir, são apresentadas as informações e provas acerca do ocorrido:
+
+[center][table  bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][b][left]DESCRIÇÃO:[/left][/b][b][left]PROVAS:[/left][/b][/td][/tr][/table][/center]
+
+Se houver insatisfação com a punição aplicada, é possível recorrer à Liderança da Companhia dos Instrutores, devendo apresentar argumentos e motivos bem fundamentados.
+
+[center][table  bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ORIENTAÇÕES[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Lembre-se que, ao ter 3 (três) advertências internas vigentes, receberá um rebaixamento após o registro da terceira advertência.
+
+[color=#005dad]➥[/color] De forma a poder realizar corretamente as aplicações requeridas em seu posto, envie pedido no grupo de seu cargo no Habbo o quanto antes. Caso necessário, solicite a um ministro ou membro da liderança que aceite o pedido;
+
+[color=#005dad]➥[/color] Caso necessário, lembre-se de ler o script de formação referente ao seu cargo, de modo a lembrar-se de eventuais detalhes e procedimentos a serem realizados;[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+  "[INS] NOTIFICAÇÃO DE REBAIXAMENTO": {
+    titulo: "[INS] Notificação de Rebaixamento",
+    conteudo: `[center][table bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE REBAIXAMENTO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Por meio desta Mensagem Privada, informa-se que você foi rebaixado ao cargo de [b](PREENCHA AQUI)[/b] na [b]Companhia dos [color=#00529e]Instrutores[/color][/b]. A seguir, são apresentadas as informações e provas acerca do ocorrido:
+
+[center][table  bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][b][left]DESCRIÇÃO:[/left][/b][b][left]PROVAS:[/left][/b][/td][/tr][/table][/center]
+
+Se houver insatisfação com a punição aplicada, é possível recorrer à Liderança da Companhia dos Instrutores, devendo apresentar argumentos e motivos bem fundamentados.
+
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ORIENTAÇÕES[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] De forma a poder realizar corretamente as aplicações requeridas em seu novo posto, envie pedido no grupo de seu cargo no Habbo o quanto antes. Caso necessário, solicite a um ministro ou membro da liderança que aceite o pedido;
+
+[color=#005dad]➥[/color] Caso necessário, lembre-se de ler o script de formação referente ao seu novo cargo, de modo a lembrar-se de eventuais detalhes e procedimentos a serem realizados;
+
+[color=#005dad]➥[/color] Caso seja aspirante/supervisor ou superior, lembre-se de realizar a atualização de suas tarefas no RCC System, conforme as TAGs da companhia listadas abaixo e de acordo com seu novo cargo.[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+  "[INS] NOTIFICAÇÃO DE EXPULSÃO": {
+    titulo: "[INS] Notificação de Expulsão",
+    conteudo: `[center][table bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE EXPULSÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Por meio desta Mensagem Privada, informa-se que você foi expulso da [b]Companhia dos [color=#00529e]Instrutores[/color][/b] resultando, também, no recebimento de 100 medalhas efetivas negativas. A seguir, são apresentadas as informações e provas acerca do ocorrido:
+
+[center][table bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][b][left]DESCRIÇÃO:[/left][/b][b][left]PROVAS:[/left][/b][/td][/tr][/table][/center]
+
+Se houver insatisfação com a punição aplicada, é possível recorrer à Liderança da Companhia dos Instrutores, devendo apresentar argumentos e motivos bem fundamentados.
+
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]RETORNO À COMPANHIA[/b][/color][/td][/tr][/table][/center]
+
+[justify]Caso tenha interesse em retornar à Companhia dos Instrutores, entre em contato com um membro do Departamento de Aplicação para receber o seu teste de admissão. Ficaremos muito felizes em recebê-lo novamente![/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+
+"[INS] NOTIFICAÇÃO DE EXONERAÇÃO": {
+    titulo: "[INS] Notificação de Exoneração",
+    conteudo: `[center][table    bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table    bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE EXONERAÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Por meio desta Mensagem Privada, informa-se que você foi exonerado da [b]Companhia dos [color=#00529e]Instrutores[/color][/b] resultando, também, no recebimento de 200 medalhas efetivas negativas. A seguir, são apresentadas as informações e provas acerca do ocorrido:
+
+[center][table    bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][b][left]DESCRIÇÃO:[/left][/b][b][left]PROVAS:[/left][/b][/td][/tr][/table][/center]
+
+Se houver insatisfação com a punição aplicada, é possível recorrer à Liderança da Companhia dos Instrutores, devendo apresentar argumentos e motivos bem fundamentados.
+
+[center][table    bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]RETORNO À COMPANHIA[/b][/color][/td][/tr][/table][/center]
+
+[justify]Caso tenha interesse em retornar à Companhia dos Instrutores, entre em contato com a Liderança para que possa ser avaliada a possibilidade com base em suas contribuições.[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+
+  "[INS] CARTA DE PROMOÇÃO A MONITOR": {
+    titulo: "[INS] Carta de Promoção a Monitor ",
+    conteudo: `[center][table     bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table     bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]CARTA DE PROMOÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Através desta mensagem privada, notificamos que você foi promovido ao cargo de [b]monitor[/b] da companhia dos [b][color=#00529e]Instrutores[/color][/b] e possui [b]7 dias[/b] para realizar a [b]capacitação intermediária[/b]. 
+
+[b]Parabéns pela sua conquista![/b]
+
+[center][table     bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td]Essa Mensagem Privada tem como objetivo passar informações imprescindíveis para a continuidade do seu crescimento na companhia, além de orientações sobre sua nova função, metas, gratificações, manuseio do subfórum dos monitores e atualização de tarefas.[/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]INFORMATIVO SOBRE SUA NOVA FUNÇÃO[/b][/color][/td][/tr][/table][/center]
+
+[justify]Os monitores são responsáveis por realizar os acompanhamentos de aulas dos instrutores de cargo inicial. O acompanhamento se resume em observar uma aula de um instrutor e ajudá-lo com qualquer dúvida ou intercorrência que venha surgir durante a aplicação e, se for necessário, repassar alguns pontos específicos para que sua aplicação se torne correta e eficiente nas próximas vezes.[/justify]
+
+Os monitores devem realizar [b]03 acompanhamentos[/b] semanalmente, sendo que:
+
+[table          bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 7px;"][size=13][b][color=#00529e]➥[/color][/b] O monitor que atingir 06 pontos ou mais na meta semanal, receberá 10 medalhas efetivas.
+[b][color=#00529e]➥[/color][/b] O monitor que atingir 05 pontos ou menos na meta semanal, receberá 10 medalhas efetivas negativas.[/size][/td][/tr][/table]
+
+[justify]Além disso, os monitores+ não podem permanecer mais de 05 dias (120 horas) inativos sem uma prévia solicitação de licença, podendo ser punidos com um rebaixamento de cargo se o fizerem, também devendo realizar a Capacitação Intermediária com um Capacitador antes de começar a realizar as atividades, tendo o prazo de 07 dias para tal a partir da promoção postada nos requerimentos, sofrendo um rebaixamento caso não cumpra.[/justify][/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]MANUSEIO DO SUBFÓRUM[/b][/color][/td][/tr][/table][/center]
+
+[justify][url=https://www.policiarcc.com/t22250-ins-formacao-dos-monitores][b][color=#00529e][INS] Script de Formação dos Monitores[/color][/b][/url] - Tópico que dispõe o slide com todas as informações do cargo de monitor. Após ser adicionado no subfórum dos monitores, é imprescindível que realize sua leitura.
+
+[url=https://www.policiarcc.com/t26352-ins-relatorios-de-postagens][b][color=#00529e][INS] Relatórios de Postagens[/color][/b][/url] - Tópico que dispõe os links para postagens, verificação de atividades e retificação de erros.[/justify][/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]PLANO DE CARREIRA E ATUALIZAÇÃO DE TAREFAS[/b][/color][/td][/tr][/table][/center]
+
+[justify]Para transmitir conhecimento aos instrutores, é essencial manter a leitura regular das documentações da companhia. Para alcançar o cargo de avaliador, é necessário cumprir metas com excelência e atender aos critérios estabelecidos. A participação em subgrupos e a apresentação de projetos ou sugestões podem destacar você entre os demais membros, embora não sejam obrigatórios.
+
+Caso você seja oficial do corpo militar ou oficial do corpo executivo portador da especialização intermediária, você tem um prazo de 48 horas para realizar sua atualização de tarefas no system da Polícia RCC.[/justify]
+
+[center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 80%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Instrutor[/b][/color][/td][td style="padding: 9px;"][color=#f8f8ff][b]Monitor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Avaliador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Capacitador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Estagiário[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Ministro[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Vice-Líder[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Líder[/b][/color][/td][/tr][/table][/center]
+
+[b]A identificação do seu novo cargo é [color=#00529e]Mon.INS[/color][/b][/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]REDES SOCIAIS[/b][/color][/td][/tr][/table][/center]
+
+Para estabelecer um melhor contato entre os membros da companhia, acompanhe-nos em nossas redes sociais:
+
+[center][table     bgcolor="25d366" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/BlW6wlS.png[/img][/sub] 
+[url=https://chat.whatsapp.com/BEOOx0ehf4X4rJLaxrZw3G][b][color=#f8f8ff]WhatsApp[/color][/b][/url][/td][/tr][/table][/center]
+
+[center][table     bgcolor="7289da" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/4ilBcWB.png[/img][/sub] [url=https://discord.com/invite/jCdah8bwwt][b][color=#f8f8ff]Discord[/color][/b][/url][/td][/tr][/table][/center][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+
+
+  "[INS] CARTA DE PROMOÇÃO A AVALIADOR": {
+    titulo: "[INS] Carta de Promoção a Avaliador",
+    conteudo: `[center][table    bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table    bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]CARTA DE PROMOÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Através desta mensagem privada, notificamos que você foi promovido ao cargo de [b]avaliador[/b] da companhia dos [b][color=#00529e]Instrutores[/color][/b] e possui [b]7 dias[/b] para realizar a [b]capacitação avançada[/b]. 
+
+[b]Parabéns pela sua conquista![/b]
+
+[center][table    bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td]Essa Mensagem Privada tem como objetivo passar informações imprescindíveis para a continuidade do seu crescimento na companhia, além de orientações sobre sua nova função, metas, gratificações, manuseio do subfórum dos avaliadores, e atualização de tarefas.[/td][/tr][/table][/center]
+
+[center][table    bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]INFORMATIVO SOBRE SUA NOVA FUNÇÃO[/b][/color][/td][/tr][/table][/center]
+
+[justify]Os avaliadores são responsáveis por avaliar, através da utilização de contas fakes, as instruções aplicadas por qualquer instrutor, garantindo que todas as normas e regras estejam sendo seguidas em suas aplicações.[/justify]
+
+Os monitores devem realizar [b]02 avaliações[/b] ou [b]03 CCI[/b] semanalmente, sendo que:
+
+[table         bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 7px;"][size=13][b][color=#00529e]➥[/color][/b] O avaliador que atingir 06 pontos ou mais na meta semanal, receberá 10 medalhas efetivas.
+[b][color=#00529e]➥[/color][/b] O avaliador que atingir 05 pontos ou menos na meta semanal, receberá 10 medalhas efetivas negativas.[/size][/td][/tr][/table][/td][/tr][/table][/center]
+
+[center][table    bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]MANUSEIO DO SUBFÓRUM[/b][/color][/td][/tr][/table][/center]
+
+[justify][url=https://www.policiarcc.com/t20340-ins-formacao-dos-avaliadores][b][color=#00529e][INS] Script de Formação dos Avaliadores[/color][/b][/url] - Tópico que dispõe o slide com todas as informações do cargo de avaliador. Após ser adicionado no subfórum dos avaliadores, é imprescindível que realize a leitura do documento.
+
+[url=https://www.policiarcc.com/t26353-ins-relatorios-de-postagens][b][color=#00529e][INS] Relatórios de Postagens[/color][/b][/url] - Tópico que dispõe os links para postagem, verificação de avaliações e retificação de erros.
+
+[url=https://www.policiarcc.com/t35887-ins-relatorio-de-fakes][b][color=#00529e][INS] Relatório de Fakes[/color][/b][/url] - Tópico que dispõe o formulário para registro dos nicknames das fakes utilizadas em suas avaliações de instrução.[/justify][/td][/tr][/table][/center]
+
+[center][table    bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]PLANO DE CARREIRA E ATUALIZAÇÃO DE TAREFAS[/b][/color][/td][/tr][/table][/center]
+
+[justify]Para transmitir conhecimento aos instrutores, é essencial manter a leitura regular das documentações da companhia. Para subir ao cargo de capacitador, você deverá cumprir suas metas com excelência e estar de acordo com as informações supracitadas. A participação em subgrupos e a apresentação de projetos ou sugestões podem destacar você entre os demais membros, embora não sejam obrigatórios.
+
+Caso você seja oficial do corpo militar ou oficial do corpo executivo portador da especialização intermediária, você tem um prazo de 48 horas para realizar sua atualização de tarefas no system da Polícia RCC.[/justify]
+
+[center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 80%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Instrutor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Monitor[/b][/color][/td][td style="padding: 9px;"][color=#f8f8ff][b]Avaliador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Capacitador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Estagiário[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Ministro[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Vice-Líder[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Líder[/b][/color][/td][/tr][/table][/center]
+
+[b]A identificação do seu novo cargo é [color=#00529e]Av.INS[/color][/b][/td][/tr][/table][/center]
+
+[center][table    bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table    bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]REDES SOCIAIS[/b][/color][/td][/tr][/table][/center]
+
+Para estabelecer um melhor contato entre os membros da companhia, acompanhe-nos em nossas redes sociais:
+
+[center][table    bgcolor="25d366" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/BlW6wlS.png[/img][/sub] [url=https://chat.whatsapp.com/IHMALMSOb094FoJ8wmouOl][b][color=#f8f8ff]WhatsApp[/color][/b][/url][/td][/tr][/table][/center]
+
+[center][table    bgcolor="7289da" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/4ilBcWB.png[/img][/sub] [url=https://discord.com/invite/jCdah8bwwt][b][color=#f8f8ff]Discord[/color][/b][/url][/td][/tr][/table][/center][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]
+
+[center][size=16][b]Para enviar o bbcode, [url=https://docs.google.com/document/d/109e2fT0S8sV9bC_j16dWWbWZ4Xi8jo5zWWLrl4lJ7ys/edit?usp=sharing]clique aqui e copie o código.[/url][/b][/size][/center]`
+  },
+
+
+  "[INS] CARTA DE PROMOÇÃO A CAPACITADOR": {
+    titulo: "[INS] CARTA DE PROMOÇÃO A CAPACITADOR ",
+    conteudo: `[center][table bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]CARTA DE PROMOÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Através desta mensagem privada, notificamos que você foi promovido ao cargo de [b]capacitador[/b] da companhia dos [b][color=#00529e]Instrutores[/color][/b].
+
+[b]Parabéns pela sua conquista![/b]
+
+[center][table bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td]Abaixo encontram-se informações imprescindíveis para a continuidade do seu crescimento na companhia, além de orientações sobre sua nova função, metas, gratificações, manuseio do subfórum dos capacitadores e atualização de tarefas.[/td][/tr][/table][/center]
+
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]INFORMATIVO SOBRE SUA NOVA FUNÇÃO[/b][/color][/td][/tr][/table][/center]
+
+[justify]Os capacitadores têm um papel fundamental ao transmitir as informações iniciais aos novos instrutores que ingressarem na companhia através da capacitação, explicando o funcionamento do subfórum, aplicação de aulas, metas, TAG's, utilização do corredor, entre outros.[/justify]
+
+Um capacitador precisa aplicar, no mínimo, [b]03 capacitações[/b] em sua meta quinzenal.
+
+[table      bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 7px;"][size=13][b][color=#00529e]➥[/color][/b] O capacitador que atingir 03 capacitações ou mais na meta quinzenal, receberá 25 medalhas efetivas.
+[b][color=#00529e]➥[/color][/b] O capacitador que atingir 02 capacitações ou menos na meta quinzenal, receberá 25 medalhas efetivas negativas.[/size][/td][/tr][/table]
+[/td][/tr][/table][/center]
+
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]MANUSEIO DO SUBFÓRUM[/b][/color][/td][/tr][/table][/center]
+
+[justify][url=https://www.policiarcc.com/t20341-ins-manual-de-formacao-dos-capacitadores][b][color=#00529e][INS] Script de Formação dos Capacitadores[/color][/b][/url] - Tópico que dispõe o slide com todas as informações do cargo de capacitador. Após ser adicionado no subfórum dos capacitadores, é imprescindível que realize a leitura do documento.
+
+[url=https://www.policiarcc.com/t28978-ins-script-de-capacitacao-basica][b][color=#00529e][INS] Script de Capacitação Básica[/color][/b][/url] - Tópico que dispõe o script de Capacitação Básica, destinado aos novos instrutores.
+
+[url=https://www.policiarcc.com/t37533-ins-script-de-capacitacao-intermediaria][b][color=#00529e][INS] Script de Capacitação Intermediária[/color][/b][/url] - Tópico que dispõe o script de Capacitação Intermediária, destinado aos novos monitores.
+
+[url=https://www.policiarcc.com/t37534-ins-script-de-capacitacao-avancada][b][color=#00529e][INS] Script de Capacitação Avançada[/color][/b][/url] - Tópico que dispõe o script de Capacitação Avançada, destinado aos novos avaliadores.
+
+[url=https://www.policiarcc.com/t37535-ins-relatorio-de-postagens][b][color=#00529e][INS] Relatórios de Postagens[/color][/b][/url] - Tópico que dispõe os links para postagem, verificação de capacitações e retificação de erros.[/justify][/td][/tr][/table][/center]
+
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]PLANO DE CARREIRA E ATUALIZAÇÃO DE TAREFAS[/b][/color][/td][/tr][/table][/center]
+
+[justify]Para transmitir conhecimento aos instrutores, é essencial manter a leitura regular das documentações da companhia. Para subir ao cargo de estagiário, você deverá cumprir suas metas com excelência e estar de acordo com as informações supracitadas. A participação em subgrupos e a apresentação de projetos ou sugestões podem destacar você entre os demais membros, embora não sejam obrigatórios.
+
+Caso você seja oficial do corpo militar ou oficial do corpo executivo portador da especialização intermediária, você tem um prazo de 48 horas para realizar sua atualização de tarefas no system da Polícia RCC.[/justify]
+
+[center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 80%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Instrutor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Monitor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Avaliador[/b][/color][/td][td style="padding: 9px;"][color=#f8f8ff][b]Capacitador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Estagiário[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Ministro[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Vice-Líder[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Líder[/b][/color][/td][/tr][/table][/center]
+
+[b]A identificação do seu novo cargo é [color=#00529e]Cap.INS[/color][/b][/td][/tr][/table][/center]
+
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]REDES SOCIAIS[/b][/color][/td][/tr][/table][/center]
+
+Para estabelecer um melhor contato entre os membros da companhia, acompanhe-nos em nossas redes sociais:
+
+[center][table bgcolor="25d366" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/BlW6wlS.png[/img][/sub] [url=https://chat.whatsapp.com/IHMALMSOb094FoJ8wmouOl][b][color=#f8f8ff]WhatsApp[/color][/b][/url][/td][/tr][/table][/center]
+
+[center][table bgcolor="7289da" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/4ilBcWB.png[/img][/sub] [url=https://discord.com/invite/jCdah8bwwt][b][color=#f8f8ff]Discord[/color][/b][/url][/td][/tr][/table][/center][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]
+`
+  },
+
+
+  "[INS] CARTA DE PROMOÇÃO A ESTAGIARIO": {
+    titulo: "[INS] CARTA DE PROMOÇÃO A ESTAGIÁRIO ",
+    conteudo: `[center][table   bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table   bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table   bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]CARTA DE PROMOÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Através desta mensagem privada, notificamos que você foi promovido ao cargo de [b]estagiário[/b] da companhia dos [b][color=#00529e]Instrutores[/color][/b].
+
+[b]Parabéns pela sua conquista![/b]
+
+[center][table   bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td]Abaixo encontram-se informações imprescindíveis para a continuidade do seu crescimento na companhia, além de orientações sobre sua nova função, metas, gratificações, manuseio do subfórum do ministério e atualização de tarefas.[/td][/tr][/table][/center]
+
+[center][table   bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table   bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]INFORMATIVO SOBRE SUA NOVA FUNÇÃO[/b][/color][/td][/tr][/table][/center]
+
+[justify]Os estagiários têm um papel fundamental na manutenção das atividades internas, de maneira a apoiar diretamente a liderança na gestão da companhia, por meio de suas atribuições gerais e do contato com os membros, proporcionando o suporte necessário para o desenvolvimento do grupo de maneira geral.
+
+Além disso, enquanto estagiário, você passará por um processo de aprendizagem e desenvolvimento, com a principal função de auxiliar os ministros em suas atividades administrativas. Esses são os ministérios pelos quais você poderá ser designado para auxiliar: Administração, Atualização, Contabilidade, Recursos Humanos, Segurança, Documentação.
+
+Convém ressaltar que [b]as funções do estágio são rotativas[/b] conforme a escala vigente. Por isso, é importante que verifique a escala sempre que a semana começar, para saber onde estagiará no referido período.[/justify]
+
+Um estagiário precisa, portanto, [b]cumprir as funções do estágio ministerial ao qual for designado[/b] em sua meta semanal.
+
+[table        bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 7px;"][size=13][b][color=#00529e]➥[/color][/b] O estagiário que cumprir suas atribuições na meta semanal, receberá 15 medalhas efetivas positivas.
+[b][color=#00529e]➥[/color][/b] O estagiário que descumprir suas atribuições na meta semanal, receberá 15 medalhas efetivas negativas.[/size][/td][/tr][/table]
+[/td][/tr][/table][/center]
+
+[center][table   bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table   bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]MANUSEIO DO SUBFÓRUM[/b][/color][/td][/tr][/table][/center]
+
+[center]Primeiramente, seguem os [b]tópicos da página inicial do subfórum do ministério[/b].[/center]
+
+[justify][url=https://www.policiarcc.com/t28980-min-ins-modelos-de-notificacoes][b][color=#00529e][Min.INS] Modelos de Notificações[/color][/b][/url] - Tópico que dispõe de todos os modelos de notificações utilizados na companhia dos instrutores.
+
+[url=https://www.policiarcc.com/t33149-min-ins-central-de-avaliacoes][b][color=#00529e][Min.INS] Central de Avaliações[/color][/b][/url] - Tópico que disponibiliza as avaliações semanais do ministério.
+
+[url=https://www.policiarcc.com/t34348-ssi-registro-de-saidas-e-expulsoes][b][color=#00529e][SSI] Registro de Saídas e Expulsões[/color][/b][/url] - Tópico destinado ao controle de saídas e expulsões da companhia.
+
+[url=https://www.policiarcc.com/t36596-min-ins-reunioes-ministeriais][b][color=#00529e][Min.INS] Reuniões Ministeriais[/color][/b][/url] - Tópico que disponibiliza o formulário de justificativas de presenças e atas das reuniões do ministério. Após ser adicionado ao subfórum do ministério, é imprescindível que realize a leitura deste documento.
+
+[url=https://www.policiarcc.com/t37295-min-ins-escala-postagem-de-conclusao][b][color=#00529e][Min.INS] Escala & Postagem de conclusão[/color][/b][/url] - Tópico destinado a transparência de escala e postagem de conclusão de funções. Após ser adicionado ao subfórum do ministério, é imprescindível que realize a leitura deste documento.[/justify]
+
+[center]Enfim, as [b]áreas do subfórum do ministério[/b], conforme apresentadas abaixo.[/center]
+
+[justify][url=https://www.policiarcc.com/f603-ins-backups][b][color=#00529e][INS] Backups[/color][/b][/url] - Área destinada ao backup da lista de membros.
+
+[url=https://www.policiarcc.com/f827-ins-manual-de-funcoes][b][color=#00529e][INS] Manual de Funções[/color][/b][/url] - Área destinada ao manual de funções do ministério da companhia dos instrutores. Após ser designado para determinado estágio, é imprescindível que realize a leitura do documento respectivo e inserido nesta área.
+
+[url=https://www.policiarcc.com/f622-ins-diretrizes-ministeriais][b][color=#00529e][INS] Diretrizes Ministeriais[/color][/b][/url] - Área destinada às documentações do ministério. O conteúdo inserido nesta área é de leitura obrigatória, uma vez que se destina a outras obrigações internas que todo membro do ministério deve seguir.[/justify][/td][/tr][/table][/center]
+
+[center][table   bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table   bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]PLANO DE CARREIRA E ATUALIZAÇÃO DE TAREFAS[/b][/color][/td][/tr][/table][/center]
+
+[justify]Para transmitir conhecimento aos instrutores, é essencial manter a leitura regular das documentações da companhia. Para subir ao cargo de ministro, você deverá cumprir suas metas com excelência e estar de acordo com as informações supracitadas. A participação em subgrupos e a apresentação de projetos ou sugestões podem destacar você entre os demais membros, embora não sejam obrigatórios.
+
+Caso você seja oficial do corpo militar ou oficial do corpo executivo portador da especialização intermediária, você tem um prazo de 48 horas para realizar sua atualização de tarefas no system da Polícia RCC.[/justify]
+
+[center][table   bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 80%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Instrutor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Monitor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Avaliador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Capacitador[/b][/color][/td][td style="padding: 9px;"][color=#f8f8ff][b]Estagiário[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Ministro[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Vice-Líder[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Líder[/b][/color][/td][/tr][/table][/center]
+
+[b]A identificação do seu novo cargo é [color=#00529e]Est.INS[/color][/b][/td][/tr][/table][/center]
+
+[center][table   bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table   bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]REDES SOCIAIS[/b][/color][/td][/tr][/table][/center]
+
+Para estabelecer um melhor contato entre os membros da companhia, acompanhe-nos em nossas redes sociais:
+
+[center][table   bgcolor="25d366" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/BlW6wlS.png[/img][/sub] [url=https://chat.whatsapp.com/IHMALMSOb094FoJ8wmouOl][b][color=#f8f8ff]WhatsApp[/color][/b][/url][/td][/tr][/table][/center]
+
+[center][table   bgcolor="7289da" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/4ilBcWB.png[/img][/sub] [url=https://discord.com/invite/jCdah8bwwt][b][color=#f8f8ff]Discord[/color][/b][/url][/td][/tr][/table][/center][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]
+`
+  },
+
+  "[INS] CARTA DE PROMOÇÃO A MINISTRO": {
+    titulo: "[INS] CARTA DE PROMOÇÃO A MINISTRO",
+    conteudo: `[center][table     bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table     bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]CARTA DE PROMOÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Através desta mensagem privada, notificamos que você foi promovido ao cargo de [b]Ministro[/b] da Companhia dos [b][color=#00529e]Instrutores[/color][/b].
+
+[b]Parabéns pela sua conquista![/b]
+
+[center][table     bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td]Abaixo encontram-se informações imprescindíveis para a continuidade do seu crescimento na companhia, além de orientações sobre sua nova função, metas, gratificações, manuseio do subfórum do ministério e atualização de tarefas.[/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]INFORMATIVO SOBRE SUA NOVA FUNÇÃO[/b][/color][/td][/tr][/table][/center]
+
+[justify]Os ministros têm um papel fundamental na manutenção das atividades internas, de maneira a apoiar diretamente a liderança na gestão da companhia, por meio de suas atribuições gerais e do contato com os membros, proporcionando o suporte necessário para o desenvolvimento do grupo de maneira geral.
+
+Além disso, enquanto ministro, você passará por um processo de desenvolvimento, com a principal função de auxiliar a Liderança em atividades administrativas e os membros da companhia. Esses são os ministérios aos quais você poderá ser designado: Administração, Atualização, Contabilidade, Recursos Humanos, Segurança, Documentação.
+
+A Liderança decidirá sua atribuição e adicionar na escala ministerial, portanto, verifique frequentemente para garantir que está realizando todas suas funções.[/justify]
+
+Um ministro precisa, portanto, [b]cumprir as funções ministeriais às quais for designado[/b] em sua meta semanal.
+
+[table          bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 7px;"][size=13][b][color=#00529e]➥[/color][/b] O ministro que cumprir suas atribuições na meta semanal, receberá 15 medalhas efetivas positivas.
+[b][color=#00529e]➥[/color][/b] O ministro que descumprir suas atribuições na meta semanal, receberá 15 medalhas efetivas negativas.[/size][/td][/tr][/table]
+[/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]MANUSEIO DO SUBFÓRUM[/b][/color][/td][/tr][/table][/center]
+
+[center]Primeiramente, seguem os [b]tópicos da página inicial do subfórum do ministério[/b].[/center]
+
+[justify][url=https://www.policiarcc.com/t28980-min-ins-modelos-de-notificacoes][b][color=#00529e][Min.INS] Modelos de Notificações[/color][/b][/url] - Tópico que dispõe de todos os modelos de notificações utilizados na companhia dos instrutores.
+
+[url=https://www.policiarcc.com/t33149-min-ins-central-de-avaliacoes][b][color=#00529e][Min.INS] Central de Avaliações[/color][/b][/url] - Tópico que disponibiliza as avaliações semanais do ministério.
+
+[url=https://www.policiarcc.com/t34348-ssi-registro-de-saidas-e-expulsoes][b][color=#00529e][SSI] Registro de Saídas e Expulsões[/color][/b][/url] - Tópico destinado ao controle de saídas e expulsões da companhia.
+
+[url=https://www.policiarcc.com/t36596-min-ins-reunioes-ministeriais][b][color=#00529e][Min.INS] Reuniões Ministeriais[/color][/b][/url] - Tópico que disponibiliza o formulário de justificativas de presenças e atas das reuniões do ministério. Após ser adicionado ao subfórum do ministério, é imprescindível que realize a leitura deste documento.
+
+[url=https://www.policiarcc.com/t37295-min-ins-escala-postagem-de-conclusao][b][color=#00529e][Min.INS] Escala &amp; Postagem de conclusão[/color][/b][/url] - Tópico destinado a transparência de escala e postagem de conclusão de funções. Após ser adicionado ao subfórum do ministério, é imprescindível que realize a leitura deste documento.[/justify]
+
+[center]Enfim, as [b]áreas do subfórum do ministério[/b], conforme apresentadas abaixo.[/center]
+
+[justify][url=https://www.policiarcc.com/f603-ins-backups][b][color=#00529e][INS] Backups[/color][/b][/url] - Área destinada ao backup da lista de membros.
+
+[url=https://www.policiarcc.com/f827-ins-manual-de-funcoes][b][color=#00529e][INS] Manual de Funções[/color][/b][/url] - Área destinada ao manual de funções do ministério da companhia dos instrutores. Após ser designado para determinado estágio, é imprescindível que realize a leitura do documento respectivo e inserido nesta área.
+
+[url=https://www.policiarcc.com/f622-ins-diretrizes-ministeriais][b][color=#00529e][INS] Diretrizes Ministeriais[/color][/b][/url] - Área destinada às documentações do ministério. O conteúdo inserido nesta área é de leitura obrigatória, uma vez que se destina a outras obrigações internas que todo membro do ministério deve seguir.[/justify][/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]PLANO DE CARREIRA E ATUALIZAÇÃO DE TAREFAS[/b][/color][/td][/tr][/table][/center]
+
+[justify]Para transmitir conhecimento aos instrutores, é essencial manter a leitura regular das documentações da companhia. Para subir ao cargo de ministro, você deverá cumprir suas metas com excelência e estar de acordo com as informações supracitadas. A participação em subgrupos e a apresentação de projetos ou sugestões podem destacar você entre os demais membros, embora não sejam obrigatórios.
+
+Caso você seja oficial do corpo militar ou oficial do corpo executivo portador da especialização intermediária, você tem um prazo de 48 horas para realizar sua atualização de tarefas no system da Polícia RCC.[/justify]
+
+[center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 80%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Instrutor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Monitor[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Avaliador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Capacitador[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Estagiário[/b][/color][/td][td style="padding: 9px;"][color=#f8f8ff][b]Ministro[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Vice-Líder[/b][/color][/td][td bgcolor="edf5fc" style="padding: 9px;"][color=#00529e][b]Líder[/b][/color][/td][/tr][/table][/center]
+
+[b]A identificação do seu novo cargo é [color=#00529e]Min.INS[/color][/b][/td][/tr][/table][/center]
+
+[center][table     bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table     bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]REDES SOCIAIS[/b][/color][/td][/tr][/table][/center]
+
+Para estabelecer um melhor contato entre os membros da companhia, acompanhe-nos em nossas redes sociais:
+
+[center][table     bgcolor="25d366" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/BlW6wlS.png[/img][/sub] [url=https://chat.whatsapp.com/IHMALMSOb094FoJ8wmouOl][b][color=#f8f8ff]WhatsApp[/color][/b][/url][/td][/tr][/table][/center]
+
+[center][table     bgcolor="7289da" style="border-radius: 14px; overflow: hidden; width: 17%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][sub][img(15px,15px)]https://i.imgur.com/4ilBcWB.png[/img][/sub] [url=https://discord.com/invite/jCdah8bwwt][b][color=#f8f8ff]Discord[/color][/b][/url][/td][/tr][/table][/center][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]
+`
+  },
+
+
+  "[INS] NOTIFICAÇÃO DE AULA CANCELADA": {
+    titulo: "[INS] Notificação de Aula Cancelada",
+    conteudo: `[center][table  bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table  bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE AULA CANCELADA[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Em uma atualização das postagens de aulas no System, você acabou tendo um [b]&Insira o nome da aula&[/b] reprovado pelo motivo de [b]&Escreva o motivo&[/b].
+
+Por favor, realize a retificação necessária e reposte a sua aula para não prejudicar o praça presente nem a sua meta.
+
+[center][table  bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ORIENTAÇÕES[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Para repostar no System, [url=https://rccsystem.com.br/companhia/instrutores][b][color=#005dad][b]clique aqui.[/b][/color][/b][/url]
+
+[color=#005dad]➥[/color] Para retificar sua postagem no [INS] Relatório de Aulas, [url=https://www.policiarcc.com/t29019-ins-retificacao-de-erros-planilha][b][color=#005dad][b]clique aqui.[/b][/color][/b][/url]
+
+[color=#005dad]➥[/color] Caso possua alguma dúvida sobre sua meta ou a companhia no geral, você pode responder esta Mensagem Privada com sua dúvida, bem como procurar algum superior na companhia para saná-la.[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+  "[INS] NOTIFICAÇÃO DE META NEGATIVA": {
+    titulo: "[INS] Notificação de Meta Negativa",
+    conteudo: `[center][table bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+ 
+[center][table bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE META NEGATIVA[/b][/size][/color][/td][/tr][/table][/center]
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+ 
+Por meio desta Mensagem Privada, informa-se que você obteve uma meta negativa na última semana na [b]Companhia dos [color=#00529e]Instrutores[/color][/b] podendo enquadrar-se no crime de reincidência caso ocorra na semana seguinte, resultando na expulsão da companhia acompanhado de 100 medalhas efetivas negativas.
+ 
+[center][table bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]RETORNO ÀS ATIVIDADES![/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Se houver alguma dúvida ou algum problema a qual esteja passando, entre em contato com um membro do Ministério ou da Liderança para que possamos ajudá-lo de alguma maneira!
+
+[color=#005dad]➥[/color]Lembre-se que você é importante para nós.[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+  "[INS] NOTIFICAÇÃO DE INFRAÇÃO (INS A CAP)": {
+    titulo: "[INS] Notificação de Infração",
+    conteudo: `[center][table  bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table  bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE INFRAÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Por meio desta Mensagem Privada, informa-se que você foi notificado internamente na [b]Companhia dos [color=#00529e]Instrutores[/color][/b]. A seguir, são apresentadas as informações e provas acerca do ocorrido:
+
+[center][table  bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][b][left]DESCRIÇÃO:[/left][/b][b][left]PROVAS:[/left][/b][/td][/tr][/table][/center]
+
+Se houver insatisfação com a punição aplicada, é possível recorrer à Liderança da Companhia dos Instrutores, devendo apresentar argumentos e motivos bem fundamentados.
+
+[center][table  bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ORIENTAÇÕES[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Lembre-se que, ao receber 3 (três) notificações referentes ao mesmo crime no período de 30 (trinta) dias, receberá uma advertência interna após o registro da terceira notificação.
+
+[color=#005dad]➥[/color] De forma a poder realizar corretamente as aplicações requeridas em seu posto, envie pedido no grupo de seu cargo no Habbo o quanto antes. Caso necessário, solicite a um ministro ou membro da liderança que aceite o pedido;
+
+[color=#005dad]➥[/color] Caso necessário, lembre-se de reler o script de formação referente ao seu cargo, de modo a lembrar-se de eventuais detalhes e procedimentos a serem realizados;[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  },
+  "[INS] NOTIFICAÇÃO DE OBSERVAÇÃO (EST A MIN)": {
+    titulo: "[INS] Notificação de Observação",
+    conteudo: `[center][table  bgcolor="00529e" style="border-radius: 23px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][img]https://i.imgur.com/n3Y0d1g.gif[/img]
+
+[center][table  bgcolor="#f8f8ff" style="border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][font=Poppins][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][color=#f8f8ff][size=18][b]NOTIFICAÇÃO DE OBSERVAÇÃO[/b][/size][/color][/td][/tr][/table][/center]
+
+Saudações, [b][color=#00529e]instrutor[/color] {USERNAME}[/b]!
+
+Por meio desta Mensagem Privada, informa-se que você foi notificado internamente com uma observação na [b]Companhia dos [color=#00529e]Instrutores[/color][/b]. A seguir, são apresentadas as informações e provas acerca do ocorrido:
+
+[center][table    bgcolor="9fc6ea" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][b][left]DESCRIÇÃO:[/left][/b][b][left]PROVAS:[/left][/b][/td][/tr][/table][/center]
+
+Se houver insatisfação com a punição aplicada, é possível recorrer à Liderança da Companhia dos Instrutores, devendo apresentar argumentos e motivos bem fundamentados.
+
+[center][table  bgcolor="edf5fc" style="border-radius: 14px; overflow: hidden; width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td][center][table  bgcolor="00529e" style="border-radius: 14px 5px; overflow: hidden; width: 40%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"][tr][td style="padding: 9px;"][color=#f8f8ff][b]ORIENTAÇÕES[/b][/color][/td][/tr][/table][/center]
+
+[justify][color=#005dad]➥[/color] Lembre-se que, ao receber 2 (duas) notificações de observação no período de 30 (trinta) dias, receberá uma advertência interna após o registro da segunda notificação.
+
+[color=#005dad]➥[/color] De forma a poder realizar corretamente as aplicações requeridas em seu posto, envie pedido no grupo de seu cargo no Habbo o quanto antes. Caso necessário, solicite a um ministro ou membro da liderança que aceite o pedido;
+
+[color=#005dad]➥[/color] Caso necessário, lembre-se de reler o script de formação referente ao seu cargo, de modo a lembrar-se de eventuais detalhes e procedimentos a serem realizados;[/justify][/td][/tr][/table][/center][/td][/tr][/table][/center][/font]
+[font=Poppins][size=12][color=#f8f8ff][b][img(10px,10px)]https://i.imgur.com/GoqL8ud.png[/img] Reservam-se os direitos à Companhia dos Instrutores[/b][/size][/color][/font][/td][/tr][/table][/center]`
+  }
+};
+
+// === Quando focar no input ===
+usuarioInput.addEventListener('focus', () => {
+  const lynsk = document.getElementById('personagemLynsk');
+  const fala = document.getElementById('falaBalao');
+
+  fala.innerHTML = "Selecione a mensagem que deseja enviar.";
+  fala.style.display = 'block';
+  lynsk.style.display = 'flex';
+
+  setTimeout(() => {
+    fala.style.display = 'none';
+    lynsk.style.display = 'none';
+  }, 4000);
+});
+
+// === Enviar MP via fetch ===
+function send_MP(titulo, user, message) {
+  return fetch('/privmsg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      folder: 'inbox',
+      mode: 'post',
+      post: '1',
+      username: user,
+      subject: titulo,
+      message: message
+    })
+  })
+  .then(res => console.log(`MP enviada para ${user}`))
+  .catch(err => console.log(`Erro ao enviar para ${user}`));
+}
+
+// === Popup simples ===
+function showPopup(message, loading = false) {
+  let popup = document.querySelector(".popup");
+  if (!popup) {
+    popup = document.createElement("div");
+    popup.className = "popup";
+    document.body.appendChild(popup);
+  }
+
+  popup.innerHTML = `
+    <div>${message}</div>
+    ${!loading ? '<button id="closePopup">Fechar</button>' : '<div class="enviando">Enviando...</div>'}
+  `;
+  popup.classList.add("active");
+
+  if (!loading) {
+    popup.querySelector("#closePopup").onclick = () => popup.classList.remove("active");
+  }
+}
+
+// === Avatar Habbo ===
+function habboAvatarUrl(nick) {
+  return `http://www.habbo.com.br/habbo-imaging/avatarimage?&user=${encodeURIComponent(nick)}&action=std&direction=2&head_direction=3&img_format=png&gesture=std&headonly=1&size=b`;
+}
+
+// === Botão ENVIAR ===
+enviarBtn.addEventListener('click', () => {
+  const usuariosTexto = usuarioInput.value.trim();
+
+  if (!usuariosTexto || !mensagemSelecionada) {
+    showPopup("Preencha o nickname e selecione a mensagem privada!");
+    return;
+  }
+
+  const usuarios = usuariosTexto.split('/').map(u => u.trim()).filter(u => u.length > 0);
+
+  if (usuarios.length === 0) {
+    showPopup("Digite pelo menos um nickname válido!");
+    return;
+  }
+
+  const { titulo, conteudo } = mensagens[mensagemSelecionada];
+
+  const htmlAvatares = usuarios.map(user => {
+    const url = habboAvatarUrl(user);
+    return `
+      <div style="display:inline-block;text-align:center;margin:5px;">
+        <img src="${url}" style="width:50px;height:50px;border-radius:8px;border:1px solid #ccc;">
+        <span>${user}</span>
+      </div>
+    `;
+  }).join('');
+
+  // Popup de confirmação
+  showPopup(`
+    Tem certeza que deseja enviar a mensagem "<b>${titulo}</b>" para os seguintes usuários?<br><br>
+    ${htmlAvatares}<br>
+    <button id="confirmSend">Enviar</button>
+    <button id="cancelSend">Cancelar</button>
+  `);
+
+  const confirmBtn = document.getElementById("confirmSend");
+  const cancelBtn = document.getElementById("cancelSend");
+
+  confirmBtn.onclick = async () => {
+    document.querySelector(".popup").classList.remove("active");
+    criarPopupPersonalizado(titulo, conteudo, usuariosTexto);
+  };
+
+  cancelBtn.onclick = () => {
+    document.querySelector(".popup").classList.remove("active");
+  };
+});
+
+
+async function confirmarEnvioDireto(titulo, conteudoFinal, userList) {
+  const usuarios = userList.split('/').map(u => u.trim()).filter(Boolean);
+
+  showPopup("Enviando mensagens...", true);
+
+  for (let user of usuarios) {
+    await send_MP(titulo, user, conteudoFinal);
+  }
+
+  showPopup("✅ Todas as mensagens foram enviadas com sucesso!");
+
+  // ✅ Aguarda 1 segundo e redireciona para a caixa de saída
+  setTimeout(() => {
+    window.location.href = "privmsg?folder=outbox";
+  }, 1000);
+}
+
+
+
+// ✅ Popup com campos dinâmicos &CAMPOS&
+function criarPopupPersonalizado(titulo, conteudoOriginal, userList) {
+  const campos = [...conteudoOriginal.matchAll(/&([^&]+)&/g)].map(m => m[1]);
+
+  if (campos.length === 0) {
+    confirmarEnvioDireto(titulo, conteudoOriginal, userList);
+    return;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.className = "popup-overlay";
+
+  const popup = document.createElement("div");
+  popup.className = "popup";
+
+  popup.innerHTML = `
+    <h2>${titulo}</h2>
+    <p>Preencha as informações abaixo:</p>
+    ${campos
+      .map(campo => `
+        <label>${campo}:</label>
+        <input type="text" id="${campo.replace(/\s+/g, "_")}" placeholder="Insira ${campo.toLowerCase()}">
+      `)
+      .join("")}
+    <div class="popup-buttons">
+      <button id="confirmarEnvio">Enviar</button>
+      <button id="cancelarEnvio">Cancelar</button>
+    </div>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    popup.classList.add("active");
+    overlay.classList.add("active");
+  }, 10);
+
+  popup.querySelector("#cancelarEnvio").onclick = () => overlay.remove();
+
+  popup.querySelector("#confirmarEnvio").onclick = async () => {
+    let conteudoFinal = conteudoOriginal;
+
+    campos.forEach(campo => {
+      const valor = document.getElementById(campo.replace(/\s+/g, "_")).value.trim();
+      conteudoFinal = conteudoFinal.replaceAll(`&${campo}&`, valor || campo);
+    });
+
+    overlay.remove();
+    await confirmarEnvioDireto(titulo, conteudoFinal, userList);
+  };
+}
+
+
+// === Cursor personalizado ===
+const cursor = document.querySelector('.custom-cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.top = e.clientY + 'px';
+  cursor.style.left = e.clientX + 'px';
+});
+
+// Qox só aparece na primeira tela
+window.addEventListener('load', () => {
+  const qox = document.getElementById('personagemQox');
+  const primeiraTela = document.getElementById('primeiraTela');
+
+  // Exibe apenas se a primeira tela estiver visível
+  if (primeiraTela) {
+    qox.style.display = 'flex';
+    qox.classList.add('animar-aparecer');
+  }
+});
+
+abrirFerramenta.addEventListener('click', e => {
+  e.preventDefault();
+  container.style.transform = 'translateX(-50%)';
+
+  // Exibe Lynsk
+  const lynsk = document.getElementById('personagemLynsk');
+  lynsk.style.display = 'flex';
+  lynsk.classList.remove('animar-aparecer');
+  setTimeout(() => lynsk.classList.add('animar-aparecer'), 100);
+
+  // Oculta Qox
+  const qox = document.getElementById('personagemQox');
+  qox.style.display = 'none';
+});
+
+</script>
+<script>
+document.addEventListener('keydown', function(e) {
+  // Bloquear F12
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+
+  // Bloquear Ctrl+Shift+I (DevTools no Chrome/Edge)
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+  }
+
+  // Bloquear Ctrl+Shift+J (Console)
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'j') {
+    e.preventDefault();
+  }
+
+  // Bloquear Ctrl+Shift+C (Inspecionar elemento com mouse)
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+    e.preventDefault();
+  }
+
+  // Bloquear Ctrl+U (Ver código-fonte)
+  if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+  }
+});
+</script>
+<script>
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+</script>
+
+</body>
+</html>
