@@ -775,17 +775,29 @@ button:active {
   }
 }
 
-/* 📱 Ajuste de input para telas menores (ex: iPhone 12 Pro Max) */
+/* 📱 Ajuste fino do input para telas menores e proporção visual */
 @media (max-width: 768px) {
   input {
-    padding: 10px 10px;     /* reduz o espaçamento interno */
-    font-size: 0.9rem;      /* texto um pouco menor */
-    border-radius: 10px;    /* borda mais proporcional */
+    width: 100%;
+    padding: 10px 12px; /* reduz a altura visual */
+    font-size: 0.9rem;
+    border-radius: 8px;
   }
 
   .form-card {
-    width: 90%;             /* evita que o card force o input a expandir */
-    padding: 25px 20px;
+    width: 85%;
+    max-width: 340px; /* impede o input de expandir demais */
+    padding: 20px 18px;
+  }
+
+  #dropdownBtn {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  #enviarBtn {
+    padding: 12px;
+    font-size: 0.9rem;
   }
 }
 
