@@ -470,56 +470,7 @@ button:active {
   border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
 }
 
-/* 📱 RESPONSIVIDADE GERAL */
 
-/* Telas grandes - Monitores Full HD e maiores */
-@media (min-width: 1600px) {
-  #ins h1 { font-size: 3.5rem; }
-  #ins p { font-size: 1.3rem; }
-  .form-card { width: 420px; }
-  .personagem-img { width: 110px; }
-}
-
-/* Notebooks e PCs médios (1366px a 1599px) */
-@media (max-width: 1599px) and (min-width: 1025px) {
-  #ins h1 { font-size: 2.8rem; }
-  #ins p { font-size: 1.1rem; }
-  .form-card { width: 360px; }
-}
-
-/* Tablets em paisagem e notebooks pequenos */
-@media (max-width: 1024px) and (min-width: 769px) {
-  #ins h1 { font-size: 2.4rem; }
-  #ins p { font-size: 1rem; }
-  .form-card { width: 320px; padding: 30px; }
-  .botao { padding: 10px 20px; font-size: 0.85rem; }
-  .personagem-img { width: 80px; }
-}
-
-/* Tablets em retrato e celulares grandes */
-@media (max-width: 768px) and (min-width: 481px) {
-  #ins h1 { font-size: 2rem; }
-  #ins p { font-size: 0.95rem; }
-  .content { padding: 0 10px; }
-  .form-card { width: 280px; padding: 25px; }
-  .botao { padding: 10px 18px; font-size: 0.8rem; }
-  .personagem { bottom: 15px; left: 15px; }
-  .personagem-img { width: 70px; }
-  .balao-fala { font-size: 13px; max-width: 200px; }
-}
-
-/* Celulares médios e pequenos (Android / iPhone) */
-@media (max-width: 480px) {
-  #ins h1 { font-size: 1.6rem; }
-  #ins p { font-size: 0.85rem; }
-  .content { padding: 0 8px; }
-  .botao { padding: 10px 16px; font-size: 0.75rem; }
-  .form-card { width: 250px; padding: 20px; }
-  .dropdown-content { font-size: 0.9rem; }
-  .personagem { bottom: 10px; left: 10px; }
-  .personagem-img { width: 60px; }
-  .balao-fala { font-size: 12px; max-width: 180px; padding: 10px; }
-}
 
 /* 🌌 POPUP MODERNO (AZUL, TEMA INS) */
 .popup {
@@ -633,6 +584,197 @@ button:active {
   left: 50px; /* posição horizontal diferente se quiser */
   bottom: 0px; /* mantém embaixo */
 }
+
+/* ===== Responsividade ===== */
+@media (max-width: 600px) {
+  .popup {
+    width: 85%;
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+  .popup h2 {
+    font-size: 1rem;
+  }
+}
+
+/* 📱💻 RESPONSIVIDADE GERAL */
+
+/* === Tablets e celulares grandes (até 1024px) === */
+@media (max-width: 1024px) {
+  #ins h1 {
+    font-size: 2.4rem;
+  }
+
+  #ins p {
+    font-size: 1rem;
+  }
+
+  .botao {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+
+  .form-card {
+    width: 320px;
+    padding: 30px 25px;
+  }
+
+  .form-card::before {
+    top: -100px;
+    width: 80px;
+    height: 160px;
+  }
+
+  input, button {
+    font-size: 0.9rem;
+  }
+}
+
+/* === Celulares médios e pequenos (até 768px) === */
+@media (max-width: 768px) {
+  #ins {
+    background-position: center center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  #ins .content {
+    max-width: 90%;
+    padding: 0;
+  }
+
+  #ins img.logo {
+    width: 150px;
+    margin-bottom: 15px;
+  }
+
+  #ins h1 {
+    font-size: 2rem;
+  }
+
+  #ins p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .botao-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .botao {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-card {
+    width: 90%;
+    padding: 25px 20px;
+  }
+
+  .form-card h2 {
+    font-size: 1.5rem;
+  }
+
+  input, button {
+    font-size: 0.9rem;
+  }
+
+  #voltarBtn {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .personagem {
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .personagem-img {
+    width: 70px;
+  }
+
+  .balao-fala {
+    font-size: 13px;
+    max-width: 180px;
+  }
+}
+
+/* === Celulares pequenos (até 480px, ex: iPhone SE, Galaxy S mini) === */
+@media (max-width: 480px) {
+  #ins h1 {
+    font-size: 1.6rem;
+  }
+
+  #ins p {
+    font-size: 0.85rem;
+  }
+
+  .botao {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+  }
+
+  .form-card {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  .form-card::before {
+    top: -80px;
+    width: 70px;
+    height: 130px;
+  }
+
+  .form-card h2 {
+    font-size: 1.3rem;
+  }
+
+  input, button {
+    font-size: 0.85rem;
+  }
+
+  .popup {
+    padding: 25px 20px;
+    font-size: 0.85rem;
+  }
+
+  .popup h2 {
+    font-size: 1.2rem;
+  }
+
+  .popup p {
+    font-size: 0.85rem;
+  }
+}
+
+/* === Monitores grandes (acima de 1600px) === */
+@media (min-width: 1600px) {
+  #ins h1 {
+    font-size: 3.5rem;
+  }
+
+  #ins p {
+    font-size: 1.3rem;
+  }
+
+  .form-card {
+    width: 420px;
+    padding: 50px 40px;
+  }
+
+  .form-card h2 {
+    font-size: 2rem;
+  }
+
+  input, button {
+    font-size: 1rem;
+  }
+}
+
 
 
 </style>
@@ -1604,9 +1746,27 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 <script>
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-});
+function abrirPopup(titulo, mensagem) {
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+  popup.innerHTML = `
+    <h2>${titulo}</h2>
+    <p>${mensagem}</p>
+    <button onclick="fecharPopup(this)">OK</button>
+  `;
+  document.body.appendChild(popup);
+}
+
+function fecharPopup(botao) {
+  const popup = botao.closest('.popup');
+  popup.style.transform = 'translate(-50%, -50%) scale(0.8)';
+  popup.style.opacity = '0';
+  setTimeout(() => popup.remove(), 200);
+}
+
+/* Exemplo de uso:
+abrirPopup("Aviso", "Seu formulário foi enviado com sucesso!");
+*/
 </script>
 
 </body>
