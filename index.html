@@ -775,6 +775,21 @@ button:active {
   }
 }
 
+/* 📱 Ajuste de input para telas menores (ex: iPhone 12 Pro Max) */
+@media (max-width: 768px) {
+  input {
+    padding: 10px 10px;     /* reduz o espaçamento interno */
+    font-size: 0.9rem;      /* texto um pouco menor */
+    border-radius: 10px;    /* borda mais proporcional */
+  }
+
+  .form-card {
+    width: 90%;             /* evita que o card force o input a expandir */
+    padding: 25px 20px;
+  }
+}
+
+
 /* === Monitores grandes (acima de 1600px) === */
 @media (min-width: 1600px) {
   #ins h1 {
