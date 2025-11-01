@@ -831,6 +831,22 @@ button:active {
   }
 }
 
+/* Remove o cursor personalizado em celulares */
+@media (max-width: 768px) {
+  * {
+    cursor: default !important;
+  }
+
+  body {
+    cursor: auto !important;
+  }
+
+  /* Caso tenha usado imagem como cursor */
+  body, button, a, input, textarea {
+    cursor: auto !important;
+  }
+}
+
 
 </style>
 </head>
