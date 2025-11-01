@@ -46,8 +46,6 @@ body {
     height: 100%;
   }
 
-
-
 /* Container com as duas telas */
 .container {
   display: flex;
@@ -55,8 +53,6 @@ body {
   transform: translateX(0%);
   transition: transform 0.6s ease-in-out;
 }
-
-
 
 /* 🔹 SEÇÃO PRINCIPAL */
 #ins {
@@ -313,9 +309,9 @@ button:active {
   font-size: 0.75rem;
   cursor: pointer;
   display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center;     /* centraliza verticalmente */
-  text-align: center;      /* garante alinhamento do texto se quebrar linha */
+  justify-content: center; 
+  align-items: center;     
+  text-align: center;   
 }
 
 
@@ -332,12 +328,12 @@ button:active {
   background: rgba(20, 20, 30, 0.95);
   border-radius: 10px;
   backdrop-filter: blur(6px);
-  z-index: 999; /* aumentei pra evitar sobreposição errada */
+  z-index: 999;
 
   /* 🧩 Aqui está a mágica */
-  max-height: 280px;       /* Limite de altura */
-  overflow-y: auto;        /* Cria rolagem interna */
-  scrollbar-width: thin;   /* Firefox */
+  max-height: 280px;       
+  overflow-y: auto;        
+  scrollbar-width: thin;   
 }
 
 /* 🎨 Rolagem estilizada */
@@ -462,15 +458,13 @@ button:active {
 .balao-fala::before {
   content: '';
   position: absolute;
-  bottom: -10px; /* mantém o triângulo alinhado à base do balão */
-  left: 50%; /* centraliza horizontalmente */
-  transform: translateX(-50%); /* centraliza exato */
+  bottom: -10px; 
+  left: 50%; 
+  transform: translateX(-50%); 
   border-width: 10px 10px 0 10px;
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
 }
-
-
 
 /* 🌌 POPUP MODERNO (AZUL, TEMA INS) */
 .popup {
@@ -930,7 +924,6 @@ button:active {
   </div>
 </section>
 
-
 <!-- Personagem da segunda página: Lynsk -->
 <div class="personagem" id="personagemLynsk">
   <img src="https://i.imgur.com/OwK346j.png" alt="Líder Habbo" class="personagem-img">
@@ -940,7 +933,6 @@ button:active {
     Caso seja mais de 1, separe com <b>/</b>.
   </div>
 </div>
-
 
   <!-- CONTAINER PRINCIPAL -->
   <div class="container" id="container">
@@ -1049,8 +1041,6 @@ button:active {
     <i class="fa-solid fa-user-graduate azul"></i>[INS] CARTA DE PROMOÇÃO A MINISTRO
   </div>
 </div>
-
-
           </div>
 
           <button id="enviarBtn">Enviar</button>
@@ -1898,17 +1888,23 @@ document.addEventListener('keydown', function(e) {
     e.preventDefault();
   }
 
-  // Bloquear Ctrl+Shift+C (Inspecionar elemento com mouse)
+  // Bloquear Ctrl+Shift+C (Inspecionar elemento)
   if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
     e.preventDefault();
   }
 
-  // Bloquear Ctrl+U (Ver código-fonte)
+  // Bloquear Ctrl+U (Ver código fonte)
   if (e.ctrlKey && e.key.toLowerCase() === 'u') {
     e.preventDefault();
   }
 });
+
+// ✅ Bloquear botão direito do mouse
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
 </script>
+
 <script>
 function abrirPopup(titulo, mensagem) {
   const popup = document.createElement('div');
