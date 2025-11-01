@@ -800,32 +800,6 @@ button:active {
     font-size: 0.9rem;
   }
 }
-/* 🔧 Ajuste de inputs e espaçamento no celular */
-@media (max-width: 600px) {
-  input {
-    width: 85%;
-    font-size: 0.9rem;
-    padding: 10px 8px;
-    margin: 10px auto;
-    display: block;
-  }
-
-  .form-card {
-    width: 90%;
-    padding: 20px 15px;
-  }
-
-  #dropdownBtn,
-  #enviarBtn {
-    width: 85%;
-    font-size: 0.9rem;
-    padding: 12px 10px;
-  }
-
-  .personagem-img {
-    width: 70px;
-  }
-}
 
 
 /* === Monitores grandes (acima de 1600px) === */
@@ -1915,27 +1889,6 @@ function fecharPopup(botao) {
 /* Exemplo de uso:
 abrirPopup("Aviso", "Seu formulário foi enviado com sucesso!");
 */
-
-// Ocultar a tela inicial ao abrir a ferramenta
-abrirFerramenta.addEventListener('click', e => {
-  e.preventDefault();
-  document.querySelector('#ins').style.display = 'none'; // 👈 oculta a tela inicial
-  container.style.transform = 'translateX(-50%)';
-  const personagemLynsk = document.getElementById('personagemLynsk');
-  personagemLynsk.style.display = 'flex';
-  personagemLynsk.classList.remove('animar-aparecer');
-  setTimeout(() => personagemLynsk.classList.add('animar-aparecer'), 100);
-});
-
-// Mostrar novamente a tela inicial ao voltar
-voltarBtn.addEventListener('click', () => {
-  container.style.transform = 'translateX(0%)';
-  document.querySelector('#ins').style.display = 'block'; // 👈 mostra de novo a tela inicial
-  const personagemLynsk = document.getElementById('personagemLynsk');
-  personagemLynsk.style.display = 'none';
-  falaBalao.innerHTML = "Olá, eu sou a líder <b>Lynsk</b>!<br>Digite o nickname do(s) militar(es) e selecione a mensagem.";
-});
-
 </script>
 
 </body>
