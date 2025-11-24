@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta content="ie=edge" http-equiv="X-UA-Compatible" />
+<title>Instrutores - Postagem de Retificações</title>
+<link href="https://www.habbo.com.br/habbo-imaging/badge/b09064s43131s50134s17113s171153f3edc7f555be912c2392e285b05bd34.gif" rel="icon" />
+<meta content="width=device-width, initial-scales=1.0" name="viewport" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* === CSS IMPORTADO DO MODELO "INS Notificação Interna" ADAPTADO === */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background:
+        linear-gradient(180deg, rgba(6, 24, 63, 0.93) 0%, rgba(6, 24, 63, 0.96) 100%),
+        url('https://i.imgur.com/5HBJY5z.png') center center / cover no-repeat;
+    padding: 20px;
+}
+
+/* CONTAINER APRIMORADO */
+.container {
+  max-width: 1000px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 30px 36px;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  transition: all 0.4s ease;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.5);
+}
+
+/* TÍTULO */
+.container .tittle {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.container .tittle::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #007bff, #2E8BE8);
+}
+
+/* FORM DETAILS */
+.container form .details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+form .details .input-box {
+  flex: 1 1 45%;
+  min-width: 220px;
+}
+
+.details .input-box .details_span {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #dbe2ff;
+}
+
+.details .input-box input,
+.container select {
+  height: 46px;
+  width: 100%;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: 14px;
+  font-size: 15px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.25s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.container select {
+    padding-right: 36px;
+}
+
+.details .input-box input:focus,
+.container select:focus {
+  border-color: #2E8BE8;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* BOTÃO DE ENVIO */
+form .button {
+  height: 48px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+form .button input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #007bff, #2E8BE8);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+form .button input:hover {
+  background: linear-gradient(135deg, #2E8BE8, #007bff);
+  transform: scale(1.02);
+}
+
+/* CARTÕES */
+#postagem_testes {
+  display: block;
+}
+
+.card {
+  display: none;
+}
+
+/* PERSONAGEM */
+.personagem {
+  display: none;
+  position: fixed;
+  bottom: 18px;
+  left: 22px;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.personagem-img {
+  width: 90px;
+  height: auto;
+}
+
+/* ANIMAÇÃO */
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animar-aparecer {
+  animation: aparecerSuave 0.6s ease-out forwards;
+}
+
+.balao-fala {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #24473c;
+  color: #000;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.3em;
+  max-width: 260px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.balao-fala::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent;
+}
+
+/* 🔽 DROPDOWN CUSTOMIZADO */
+.dropdown {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#dropdownBtn {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+#dropdownBtn:hover {
+  background: rgba(255,255,255,0.10);
+  transform: scale(1.01);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 22, 45, 0.95);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  padding: 6px 0;
+
+  /* lista scrollável */
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Estilo dos itens */
+.dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #dee7ff;
+  transition: 0.18s;
+}
+
+.dropdown-item i {
+  color: #4aa3ff;
+}
+
+.dropdown-item:hover {
+  background: rgba(50, 115, 255, 0.12);
+  color: #fff;
+}
+
+/* Quando abrir */
+.dropdown.open .dropdown-content {
+  display: block;
+}
+
+/* DROPDOWN PEQUENO */
+.dropdown.pequeno {
+  width: 100%;
+  position: relative;
+}
+
+.dropdown.pequeno #dropdownBtn_necessidade {
+  width: 100%;
+  background: #142033;
+  color: #eaeaea;
+  border: 1px solid #2b3f52;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.92rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.dropdown.pequeno #dropdownBtn_necessidade:hover {
+  background: #1b3146;
+}
+
+/* lista */
+.dropdown.pequeno .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background: rgba(18, 28, 40, 0.98);
+  border: 1px solid #2b3f52;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 9999;
+  padding: 6px 0;
+}
+
+/* quando o dropdown pequeno abre (classe .open adicionada via JS) */
+.dropdown.pequeno.open .dropdown-content {
+  display: block;
+}
+
+/* Scrollbar WebKit para dropdown pequeno */
+.dropdown.pequeno .dropdown-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.dropdown.pequeno .dropdown-content::-webkit-scrollbar-track {
+  background: rgba(18, 28, 40, 0.6);
+  border-radius: 4px;
+}
+
+.dropdown.pequeno .dropdown-content::-webkit-scrollbar-thumb {
+  background-color: #2E8BE8;
+  border-radius: 4px;
+  border: 2px solid rgba(0,0,0,0);
+}
+
+.dropdown.pequeno .dropdown-content::-webkit-scrollbar-thumb:hover {
+  background-color: #4fa6ff;
+}
+
+/* Scrollbar Firefox (aplica cor & largura) */
+.dropdown.pequeno .dropdown-content {
+  scrollbar-width: thin;
+  scrollbar-color: #2E8BE8 rgba(18,28,40,0.6);
+}
+
+/* Responsividade */
+@media (max-width: 760px) {
+  .container { padding: 22px; border-radius: 10px; }
+  form .details .input-box { flex: 1 1 100%; }
+  .personagem { left: 12px; bottom: 10px; }
+  .balao-fala { max-width: 200px; font-size: 13px; }
+}
+
+/* Força inputs autofill background clean */
+input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 30px rgba(0,0,0,0.6) inset !important;
+    box-shadow: 0 0 0 30px rgba(0,0,0,0.6) inset !important;
+    -webkit-text-fill-color: #fff !important;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+	<div class="tittle">
+		Companhia dos Instrutores - Retificação de Erros
+	</div>
+
+	<div id="retificação_erros" class="card">
+		<form onsubmit="return fill_retif(event)" action="#" id="pedido_retif">
+			<div class="details">
+				<input style="display: none;" value="-" id="horario_envio_ret" name="horario_envio_ret" type="text" />
+				<div class="input-box">
+					<span class="details_span">Nickname do Membro</span>
+					<input required placeholder="Nickname do membro responsável pela postagem incorreta" type="text" id="nickname_ret" name="nickname_ret" />
+				</div>
+				<div class="input-box">
+					<span class="details_span">Linha na Planilha</span>
+					<input required placeholder="Linha da planilha onde o erro cometido se encontra" type="number" name="linha_plan" id="linha_plan" />
+				</div>
+				<div class="input-box">
+					<span class="details_span">Planilha de Referência</span>
+					<select id="planilha_ret" name="planilha_ret">
+						<option selected disabled value="">Selecione a planilha onde o erro ocorreu</option>
+						<option value="Aulas">Instrutores - Relatórios de Aulas</option>
+						<option value="Monitores">Monitores - Relatórios de Acompanhamentos</option>
+						<option value="Avaliações">Avaliadores - Relatórios de Avaliações de Instrução e Curso de Conhecimento dos Instrutores</option>
+						<option value="Capacitações">Capacitadores - Relatórios de Capacitações</option>
+						<option value="Testes">Aplicadores - Relatórios de Testes</option>
+					</select>
+				</div>
+				<div class="input-box">
+					<span class="details_span">Erro</span>
+					<input required placeholder="Erro a ser corrigido" type="text" name="erro_retif" id="erro_retif" />
+				</div>
+				<div class="input-box">
+					<span class="details_span">Correção</span>
+					<input required placeholder="Valor para o qual o erro deverá ser corrigido" type="text" name="correção_retif" id="correção_retif" />
+				</div>
+				<div id="enviar_retificação" class="button">
+					<input value="Enviar" type="submit" />
+				</div>
+				<div id="enviar_retificação_dis" style="display: none;" class="button">
+					<input disabled value="Enviando...Aguarde!" type="submit" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<textarea id="fa-generated-message" style="display: none;"></textarea>
+
+<!-- SCRIPTS ORIGINAIS (MANTIDOS INTACTOS) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+function preencher_data(id){
+    var horario = new Date();
+        horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+        var data_hoje = horario.getDate();
+            if(data_hoje<10){data_hoje = '0' + data_hoje};
+        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+        var mes_hoje = meses[horario.getMonth()];
+        var ano_hoje = horario.getFullYear();
+        var horario_hoje = horario.getHours();
+            if(horario_hoje<10){horario_hoje = '0' + horario_hoje};
+        var minutos_hoje = horario.getMinutes();
+            if(minutos_hoje<10){minutos_hoje = '0' + minutos_hoje};
+        var segundos_hoje = horario.getSeconds();
+            if(segundos_hoje<10){segundos_hoje = '0' + segundos_hoje};
+        document.getElementById(id).value = data_hoje + ' ' + mes_hoje + ' ' + ano_hoje + ' ' + horario_hoje + ':' + minutos_hoje + ':' + segundos_hoje;
+}
+
+function fill_retif(e){
+    e.preventDefault();
+    var isValid = true;
+    if($("#planilha_ret").val() == null){isValid = false};
+    $("#pedido_retif").find("input").each(function(){
+        if($(this).val() == ""){isValid = false};
+    })
+
+    // SE VALIDAÇÃO É VERIFICADA:
+    if(isValid == true){
+        document.getElementById('enviar_retificação').style.display = 'none';
+        document.getElementById('enviar_retificação_dis').style.display = 'flex';
+        preencher_data('horario_envio_ret');
+
+        var form = document.getElementById("pedido_retif");
+        var link_url = 'https://script.google.com/macros/s/AKfycbxfSroGjPJtzz9ju5GCc1eowAUKTv8dzxM5NaQ_927QAzf25qPSnMTQRUzL8DfVDaYzgQ/exec';
+        fetch(link_url, { method: 'POST', body: new FormData(form)})
+            .then(response => location.reload())
+            .catch(error => alert('Resposta não enviada para a planilha. Contate um membro do Ministério!'));
+        window.open('https://docs.google.com/spreadsheets/d/1ttqYlh0bfKletYdpgSw7BvY4Q0NFmFebYfIshK5blqE/edit#gid=0', '_blank');
+    }
+    // SE VALIDAÇÃO NÃO É VERIFICADA:
+    else{
+        alert('Preencha todos os campos!')
+    };
+
+    return isValid;
+}
+</script>
+
+<!-- Extras de compatibilidade (mantidos) -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://forumeiros.github.io/assets/src/form-generator/form-replace.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script> // PREENCHIMENTO AUTOMÁTICO COM LINK
+$(document).ready(function(){
+    const urlParams = new URLSearchParams(window.location.search).forEach(function(x,y){
+        document.getElementById(y).value = x;
+    });    
+});
+</script>
+
+</body>
+</html>
