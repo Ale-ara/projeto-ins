@@ -1,331 +1,355 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta content="ie=edge" http-equiv="X-UA-Compatible" />
-<title>Instrutores - Postagem de Retificações</title>
-<link href="https://www.habbo.com.br/habbo-imaging/badge/b09064s43131s50134s17113s171153f3edc7f555be912c2392e285b05bd34.gif" rel="icon" />
-<meta content="width=device-width, initial-scales=1.0" name="viewport" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Companhia dos Instrutores - Retificação de Erros</title>
+<link rel="icon" href="https://www.habbo.com.br/habbo-imaging/badge/b09064s43131s50134s17113s171153f3edc7f555be912c2392e285b05bd34.gif" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* === CSS IMPORTADO DO MODELO "INS Notificação Interna" ADAPTADO === */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-
-/* === CONFIGURAÇÃO GLOBAL === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  display: flex;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-  padding: 25px;
+/* === CSS: mantém o estilo anterior e adiciona sidebar === */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html,body{height:100%}
+body{
   background:
-      linear-gradient(180deg, rgba(6, 24, 63, 0.93) 0%, rgba(6, 24, 63, 0.96) 100%),
-      url("https://i.imgur.com/5HBJY5z.png") center / cover no-repeat;
-  color: #fff;
+    linear-gradient(180deg, rgba(6,24,63,0.93) 0%, rgba(6,24,63,0.96) 100%),
+    url('https://i.imgur.com/5HBJY5z.png') center/cover no-repeat;
+  color:#fff;padding:24px;
+  min-height:100vh;
 }
 
-/* === CONTAINER === */
-.container {
-  width: 100%;
-  max-width: 900px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 15px;
-  padding: 40px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+/* SIDEBAR (desktop only) */
+.sidebar{
+  position:fixed;left:20px;top:20px;bottom:20px;width:220px;
+  background:linear-gradient(180deg,#07125a,#0a3b87);
+  border-radius:12px;padding:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.45);display:flex;flex-direction:column;gap:14px;
+  z-index:120;
+}
+.sidebar .avatar{
+  width:84px;height:84px;border-radius:8px;overflow:hidden;border:2px solid rgba(255,255,255,0.08);
+  margin:0 auto;display:flex;align-items:center;justify-content:center;background:#0003;
+}
+.sidebar .avatar img{width:100%;display:block}
+.sidebar h3{text-align:center;font-size:16px;margin-top:6px;word-break:break-word}
+.sidebar .nav{margin-top:6px;display:flex;flex-direction:column;gap:6px}
+.sidebar .nav a{
+  display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#eaf4ff;text-decoration:none;
+  font-weight:600;font-size:14px;border:1px solid rgba(255,255,255,0.03);transition:all .15s;
+}
+.sidebar .nav a:hover{background:rgba(255,255,255,0.04);transform:translateY(-2px)}
+
+/* MAIN container (form) */
+.wrapper{
+  margin-left:260px; /* leave space for sidebar */
+  max-width:980px;width:100%;
+  margin-right:20px;
+  display:block;
+}
+.container{
+  width:100%;max-width:980px;background:rgba(255,255,255,0.06);
+  border-radius:14px;padding:34px;backdrop-filter:blur(10px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.45);margin:0 auto;
 }
 
-.tittle {
-  text-align: center;
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  position: relative;
+/* title */
+.tittle{font-size:26px;font-weight:700;text-align:center;margin-bottom:18px;position:relative}
+.tittle::before{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-10px;width:70px;height:4px;border-radius:4px;background:linear-gradient(90deg,#007bff,#2E8BE8)}
+
+/* form layout (mantém seu estilo) */
+.details{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px}
+.input-box{flex:1 1 calc(50% - 18px);min-width:220px}
+.details_span{display:block;margin-bottom:8px;color:#dbeeff;font-weight:600}
+
+/* inputs (mesmo visual anterior) */
+input[type="text"], input[type="number"], .select-btn{
+  width:100%;height:46px;border-radius:10px;padding:10px 14px;font-size:15px;
+  background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.12);
+  transition:all .18s ease;
 }
+input:focus, .select-btn:focus{outline:none;border-color:#2E8BE8;background:rgba(255,255,255,0.10)}
 
-.tittle::before {
-  content: "";
-  width: 55px;
-  height: 3px;
-  border-radius: 3px;
-  background: #2E8BE8;
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+/* button */
+.button input{width:100%;height:48px;border-radius:10px;border:none;background:linear-gradient(135deg,#007bff,#2E8BE8);color:#fff;font-weight:700;cursor:pointer;font-size:16px}
+.button input[disabled]{opacity:0.7;cursor:not-allowed}
+
+/* select custom */
+.select-custom{position:relative}
+.select-btn{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10)}
+.select-menu{display:none;position:absolute;left:0;top:115%;width:100%;background:rgba(12,20,36,0.98);border-radius:10px;padding:6px 0;max-height:240px;overflow:auto;z-index:120;border:1px solid rgba(255,255,255,0.06)}
+.select-item{padding:10px 14px;cursor:pointer;display:flex;gap:10px;align-items:center;color:#dbeeff}
+.select-item:hover{background:rgba(46,139,232,0.12);color:#fff}
+
+/* scrollbar */
+.select-menu::-webkit-scrollbar{width:8px}
+.select-menu::-webkit-scrollbar-thumb{background:#2E8BE8;border-radius:6px}
+
+/* personagem inicial: L2ro (aparece apenas no load) */
+.personagem-inicio{
+  display:flex;flex-direction:column-reverse;align-items:center;gap:10px;
+  position:fixed;left:260px;bottom:18px;z-index:9999;pointer-events:none;
 }
+.personagem-inicio .personagem-img{width:92px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.35)}
+.personagem-inicio .balao-fala{background:rgba(255,255,255,0.95);color:#000;padding:12px 14px;border-radius:12px;line-height:1.3em;max-width:300px;text-align:center;border:2px solid #24473c;box-shadow:0 6px 18px rgba(0,0,0,0.15);position:relative}
+.personagem-inicio .balao-fala::before{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-10px;border-width:10px 10px 0 10px;border-style:solid;border-color:rgba(255,255,255,0.95) transparent transparent transparent}
 
-/* === INPUTS E SELECT === */
-.details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+/* personagem Lynsk para campos (aparece ao focar) */
+.personagem-campo{
+  display:none;flex-direction:column-reverse;align-items:center;gap:10px;
+  position:fixed;left:260px;bottom:18px;z-index:9999;pointer-events:none;
 }
+.personagem-campo .personagem-img{width:90px}
+.personagem-campo .balao-fala{background:rgba(255,255,255,0.95);color:#000;padding:12px 14px;border-radius:12px;line-height:1.3em;max-width:260px;text-align:center;border:2px solid #24473c;position:relative}
+.personagem-campo .balao-fala::before{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-10px;border-width:10px 10px 0 10px;border-style:solid;border-color:rgba(255,255,255,0.95) transparent transparent transparent}
 
-.input-box {
-  flex: 1 1 calc(50% - 20px);
-  min-width: 250px;
+/* animation */
+@keyframes aparecerSuave{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.animar-aparecer{animation:aparecerSuave .5s ease-out forwards}
+
+/* modal (confirmation) */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,0.55);display:none;align-items:center;justify-content:center;z-index:150;
 }
+.modal{width:92%;max-width:520px;background:#0f1630;border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 14px 50px rgba(0,0,0,0.6)}
+.modal h3{margin-bottom:8px;color:#fff;font-size:18px}
+.modal p{color:#dfe9ff;margin-bottom:14px}
+.modal .actions{display:flex;gap:10px;justify-content:flex-end}
+.btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+.btn.primary{background:linear-gradient(135deg,#007bff,#2E8BE8);color:#fff}
 
-.details_span {
-  font-weight: 500;
-  color: #dce6ff;
-  margin-bottom: 8px;
-  display: block;
+/* responsive: hide sidebar on small screens and adjust layout */
+@media (max-width:900px){
+  .sidebar{display:none}
+  .wrapper{margin-left:0;padding:0 10px}
+  .personagem-inicio{left:18px}
+  .personagem-campo{left:18px}
 }
-
-input,
-select {
-  width: 100%;
-  height: 46px;
-  border-radius: 10px;
-  padding: 12px;
-  background: rgba(255,255,255,0.07);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
-  font-size: 15px;
-  transition: .2s ease;
-}
-
-input:focus,
-select:focus {
-  background: rgba(255,255,255,0.15);
-  border-color: #2E8BE8;
-  outline: none;
-}
-
-select {
-  appearance: none;
-  background-image: url("https://i.imgur.com/1J8ZqYF.png");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 15px;
-}
-
-/* === BOTÃO DE ENVIO === */
-.button input {
-  width: 100%;
-  height: 48px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #007bff, #2E8BE8);
-  color: #fff;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.button input:hover {
-  transform: scale(1.03);
-  background: linear-gradient(135deg, #2E8BE8, #007bff);
-}
-
-/* === PERSONAGEM === */
-.personagem {
-  display: none;
-  position: fixed;
-  bottom: 0px;
-  left: 30px;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 10px;
-  z-index: 9999;
-}
-
-.personagem-img {
-  width: 90px;
-  height: auto;
-}
-
-/* ANIMAÇÃO */
-@keyframes aparecerSuave {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animar-aparecer {
-  animation: aparecerSuave 0.6s ease-out forwards;
-}
-
-.balao-fala {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #1b3e5c;
-  color: #000;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.3em;
-  max-width: 240px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-}
-
-.balao-fala::before {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 10px 10px 0 10px;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.9) transparent transparent transparent;
-}
-
-/* === RESPONSIVO === */
-@media (max-width: 600px) {
-  .container {
-    padding: 25px;
-  }
-
-  .input-box {
-    flex: 1 1 100%;
-  }
-
-  .personagem-img {
-    width: 70px;
-  }
-
-  .balao-fala {
-    max-width: 180px;
-    font-size: 12px;
-  }
-}
-
 </style>
 </head>
-
 <body>
-<div class="container">
 
-	<div class="tittle">
-		Companhia dos Instrutores - Retificação de Erros
-	</div>
+<!-- SIDEBAR (left) - avatar uses {USERNAME} placeholder -->
+<div class="sidebar" id="sidebar">
+  <div class="avatar">
+    <!-- replace {USERNAME} server-side with actual nickname; keeps pattern used in forum -->
+    <img id="sidebarAvatar" alt="avatar" src="https://www.habbo.com.br/habbo-imaging/avatarimage?user={USERNAME}&action=std&direction=2&head_direction=3&gesture=sml&size=m">
+  </div>
+  <h3 id="sidebarName">{USERNAME}</h3>
 
-	<div id="retificação_erros" class="card">
-		<form onsubmit="return fill_retif(event)" action="#" id="pedido_retif">
-			<div class="details">
-				<input style="display: none;" value="-" id="horario_envio_ret" name="horario_envio_ret" type="text" />
-				<div class="input-box">
-					<span class="details_span">Nickname do Membro</span>
-					<input required placeholder="Nickname do membro responsável pela postagem incorreta" type="text" id="nickname_ret" name="nickname_ret" />
-				</div>
-				<div class="input-box">
-					<span class="details_span">Linha na Planilha</span>
-					<input required placeholder="Linha da planilha onde o erro cometido se encontra" type="number" name="linha_plan" id="linha_plan" />
-				</div>
-				<div class="input-box">
-					<span class="details_span">Planilha de Referência</span>
-					<select id="planilha_ret" name="planilha_ret">
-						<option selected disabled value="">Selecione a planilha onde o erro ocorreu</option>
-						<option value="Aulas">Instrutores - Relatórios de Aulas</option>
-						<option value="Monitores">Monitores - Relatórios de Acompanhamentos</option>
-						<option value="Avaliações">Avaliadores - Relatórios de Avaliações de Instrução e Curso de Conhecimento dos Instrutores</option>
-						<option value="Capacitações">Capacitadores - Relatórios de Capacitações</option>
-						<option value="Testes">Aplicadores - Relatórios de Testes</option>
-					</select>
-				</div>
-				<div class="input-box">
-					<span class="details_span">Erro</span>
-					<input required placeholder="Erro a ser corrigido" type="text" name="erro_retif" id="erro_retif" />
-				</div>
-				<div class="input-box">
-					<span class="details_span">Correção</span>
-					<input required placeholder="Valor para o qual o erro deverá ser corrigido" type="text" name="correção_retif" id="correção_retif" />
-				</div>
-				<div id="enviar_retificação" class="button">
-					<input value="Enviar" type="submit" />
-				</div>
-				<div id="enviar_retificação_dis" style="display: none;" class="button">
-					<input disabled value="Enviando...Aguarde!" type="submit" />
-				</div>
-			</div>
-		</form>
-	</div>
+  <nav class="nav" aria-label="Navegação">
+    <a href="#" title="Início"><i class="fa-solid fa-house"></i> Início</a>
+    <a href="#" title="Retificações"><i class="fa-solid fa-pen"></i> Retificações</a>
+    <a href="#" title="Testes"><i class="fa-solid fa-file-lines"></i> Testes</a>
+    <!-- você pode trocar ícones/links manualmente depois -->
+  </nav>
 </div>
 
-<textarea id="fa-generated-message" style="display: none;"></textarea>
+<!-- MAIN wrapper -->
+<div class="wrapper">
+  <div class="container">
+    <div class="tittle">Companhia dos Instrutores - Retificação de Erros</div>
 
-<!-- SCRIPTS ORIGINAIS (MANTIDOS INTACTOS) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <form id="pedido_retif" onsubmit="return handleSubmit(event)">
+      <div class="details">
+        <input style="display:none" id="horario_envio_ret" name="horario_envio_ret" type="text" value="-" />
+
+        <div class="input-box">
+          <label class="details_span" for="nickname_ret">Nickname do Membro</label>
+          <input id="nickname_ret" name="nickname_ret" type="text" required placeholder="Nickname do membro responsável" />
+        </div>
+
+        <div class="input-box">
+          <label class="details_span" for="linha_plan">Linha na Planilha</label>
+          <input id="linha_plan" name="linha_plan" type="number" required placeholder="Linha da planilha onde o erro está" />
+        </div>
+
+        <div class="input-box">
+          <label class="details_span">Planilha de Referência</label>
+          <div class="select-custom" id="selectPlanilha">
+            <div class="select-btn" id="selectBtn" tabindex="0"><span id="selectText">Selecione a planilha onde o erro ocorreu</span><i class="fa-solid fa-chevron-down"></i></div>
+            <div class="select-menu" id="selectMenu" role="listbox" aria-label="Opções de planilha">
+              <div class="select-item" data-value="Aulas"><i class="fa-solid fa-circle-info"></i> Instrutores - Relatórios de Aulas</div>
+              <div class="select-item" data-value="Monitores"><i class="fa-solid fa-circle-info"></i> Monitores - Relatórios de Acompanhamentos</div>
+              <div class="select-item" data-value="Avaliações"><i class="fa-solid fa-circle-info"></i> Avaliadores - Relatórios de Avaliações</div>
+              <div class="select-item" data-value="Capacitações"><i class="fa-solid fa-circle-info"></i> Capacitadores - Relatórios de Capacitações</div>
+              <div class="select-item" data-value="Testes"><i class="fa-solid fa-circle-info"></i> Aplicadores - Relatórios de Testes</div>
+            </div>
+          </div>
+          <input type="hidden" id="planilha_ret" name="planilha_ret" />
+        </div>
+
+        <div class="input-box">
+          <label class="details_span" for="erro_retif">Erro</label>
+          <input id="erro_retif" name="erro_retif" type="text" required placeholder="Erro a ser corrigido" />
+        </div>
+
+        <div class="input-box">
+          <label class="details_span" for="correcao_ret">Correção</label>
+          <input id="correcao_ret" name="correção_retif" type="text" required placeholder="Valor para o qual o erro deverá ser corrigido" />
+        </div>
+
+      </div>
+
+      <div class="button" style="margin-top:18px">
+        <input type="submit" value="Enviar" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- personagem inicial: L2ro (aparece apenas no load) -->
+<div class="personagem-inicio" id="personagemL2ro" style="display:none">
+  <img class="personagem-img" id="imgL2ro" src="https://i.imgur.com/umvOmS1.png" alt="L2ro">
+  <div class="balao-fala animar-aparecer" id="balaoInicial" style="position:relative;">
+    Olá, sou o <b>L2ro</b>, apresento para vocês a retificação de erros. Tivemos uma pequena reformulação, aproveite!
+  </div>
+</div>
+
+<!-- personagem para campos: Lynsk (aparece ao focar inputs) -->
+<div class="personagem-campo" id="personagemLynsk" aria-hidden="true">
+  <img class="personagem-img" src="https://i.imgur.com/OwK346j.png" alt="Lynsk">
+  <div class="balao-fala" id="falaBalao">...</div>
+</div>
+
+<!-- modal -->
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Retificação enviada</h3>
+    <p>Deseja verificar a resposta na planilha agora?</p>
+    <div class="actions" style="display:flex;justify-content:flex-end;gap:10px">
+      <button class="btn secondary" id="btnNo">Não</button>
+      <button class="btn primary" id="btnYes">Sim, abrir planilha</button>
+    </div>
+  </div>
+</div>
+
 <script>
-function preencher_data(id){
-    var horario = new Date();
-        horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
-        var data_hoje = horario.getDate();
-            if(data_hoje<10){data_hoje = '0' + data_hoje};
-        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
-        var mes_hoje = meses[horario.getMonth()];
-        var ano_hoje = horario.getFullYear();
-        var horario_hoje = horario.getHours();
-            if(horario_hoje<10){horario_hoje = '0' + horario_hoje};
-        var minutos_hoje = horario.getMinutes();
-            if(minutos_hoje<10){minutos_hoje = '0' + minutos_hoje};
-        var segundos_hoje = horario.getSeconds();
-            if(segundos_hoje<10){segundos_hoje = '0' + segundos_hoje};
-        document.getElementById(id).value = data_hoje + ' ' + mes_hoje + ' ' + ano_hoje + ' ' + horario_hoje + ':' + minutos_hoje + ':' + segundos_hoje;
+/* Utility: retorna horário formatado */
+function retorna_horario(){
+  var horario = new Date();
+  horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+  var d = horario.getDate(); if(d<10) d='0'+d;
+  const meses = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+  var m = meses[horario.getMonth()];
+  var y = horario.getFullYear();
+  var hh = horario.getHours(); if(hh<10) hh='0'+hh;
+  var mm = horario.getMinutes(); if(mm<10) mm='0'+mm;
+  var ss = horario.getSeconds(); if(ss<10) ss='0'+ss;
+  return d+' '+m+' '+y+' '+hh+':'+mm+':'+ss;
 }
 
-function fill_retif(e){
-    e.preventDefault();
-    var isValid = true;
-    if($("#planilha_ret").val() == null){isValid = false};
-    $("#pedido_retif").find("input").each(function(){
-        if($(this).val() == ""){isValid = false};
-    })
+/* --- personagem inicial: aparece ao carregar e some --- */
+(function showInitialCharacter(){
+  const box = document.getElementById('personagemL2ro');
+  if(!box) return;
+  box.style.display = 'flex';
+  box.classList.remove('animar-aparecer');
+  setTimeout(()=>box.classList.add('animar-aparecer'),40);
+  // some após 4.5s
+  setTimeout(()=>{ box.classList.remove('animar-aparecer'); setTimeout(()=>box.style.display='none',300); },4500);
+})();
 
-    // SE VALIDAÇÃO É VERIFICADA:
-    if(isValid == true){
-        document.getElementById('enviar_retificação').style.display = 'none';
-        document.getElementById('enviar_retificação_dis').style.display = 'flex';
-        preencher_data('horario_envio_ret');
+/* --- personagem para campos: mostra Lynsk quando focar; garante L2ro escondido --- */
+const lynskBox = document.getElementById('personagemLynsk');
+const lynskFala = document.getElementById('falaBalao');
+const l2roBox = document.getElementById('personagemL2ro');
 
-        var form = document.getElementById("pedido_retif");
-        var link_url = 'https://script.google.com/macros/s/AKfycbxfSroGjPJtzz9ju5GCc1eowAUKTv8dzxM5NaQ_927QAzf25qPSnMTQRUzL8DfVDaYzgQ/exec';
-        fetch(link_url, { method: 'POST', body: new FormData(form)})
-            .then(response => location.reload())
-            .catch(error => alert('Resposta não enviada para a planilha. Contate um membro do Ministério!'));
-        window.open('https://docs.google.com/spreadsheets/d/1ttqYlh0bfKletYdpgSw7BvY4Q0NFmFebYfIshK5blqE/edit#gid=0', '_blank');
-    }
-    // SE VALIDAÇÃO NÃO É VERIFICADA:
-    else{
-        alert('Preencha todos os campos!')
-    };
-
-    return isValid;
+function showLynsk(msg){
+  if(l2roBox){
+    // esconde L2ro imediatamente se estiver visível
+    l2roBox.style.display = 'none';
+    l2roBox.classList.remove('animar-aparecer');
+  }
+  if(!lynskBox) return;
+  lynskFala.innerHTML = msg;
+  lynskBox.style.display = 'flex';
+  lynskBox.classList.remove('animar-aparecer');
+  setTimeout(()=>lynskBox.classList.add('animar-aparecer'),20);
+  clearTimeout(window._lynskTimer);
+  window._lynskTimer = setTimeout(()=>{ lynskBox.classList.remove('animar-aparecer'); setTimeout(()=>lynskBox.style.display='none',300); },4000);
 }
-</script>
 
-<!-- Extras de compatibilidade (mantidos) -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://forumeiros.github.io/assets/src/form-generator/form-replace.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-<script> // PREENCHIMENTO AUTOMÁTICO COM LINK
-$(document).ready(function(){
-    const urlParams = new URLSearchParams(window.location.search).forEach(function(x,y){
-        document.getElementById(y).value = x;
-    });    
+/* attach focus listeners */
+['nickname_ret','linha_plan','erro_retif','correcao_ret'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('focus', ()=> {
+    // also hide sidebar avatar initial tooltip if desired
+    showLynsk({
+      'nickname_ret': "Informe o <b>nickname do membro</b> responsável pelo erro.",
+      'linha_plan': "Digite a <b>linha exata</b> onde o erro está na planilha.",
+      'erro_retif': "Descreva brevemente qual foi o <b>erro</b> encontrado.",
+      'correcao_ret': "Informe a <b>correção</b> que deve ser aplicada."
+    }[id] || '');
+  });
 });
+
+/* select behavior */
+const selectBtn = document.getElementById('selectBtn');
+const selectMenu = document.getElementById('selectMenu');
+const selectText = document.getElementById('selectText');
+const hiddenPlan = document.getElementById('planilha_ret');
+
+if(selectBtn){
+  selectBtn.addEventListener('click', (e)=> {
+    e.stopPropagation();
+    if(l2roBox && l2roBox.style.display !== 'none'){ l2roBox.style.display='none'; }
+    selectMenu.style.display = selectMenu.style.display === 'block' ? 'none' : 'block';
+  });
+  selectBtn.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); selectMenu.style.display = selectMenu.style.display === 'block' ? 'none' : 'block'; }});
+  selectMenu.querySelectorAll('.select-item').forEach(item=>{
+    item.addEventListener('click', ()=> {
+      selectText.textContent = item.textContent.trim();
+      hiddenPlan.value = item.dataset.value;
+      selectMenu.style.display = 'none';
+    });
+  });
+  document.addEventListener('click', (e)=>{
+    if(!document.getElementById('selectPlanilha').contains(e.target)){
+      selectMenu.style.display = 'none';
+    }
+  });
+}
+
+/* --- submit: send to Google Script and show modal --- */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const btnYes = document.getElementById('btnYes');
+const btnNo = document.getElementById('btnNo');
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfSroGjPJtzz9ju5GCc1eowAUKTv8dzxM5NaQ_927QAzf25qPSnMTQRUzL8DfVDaYzgQ/exec';
+const PLANILHA_URL = 'https://docs.google.com/spreadsheets/d/1ttqYlh0bfKletYdpgSw7BvY4Q0NFmFebYfIshK5blqE/edit#gid=0';
+
+function handleSubmit(e){
+  e.preventDefault();
+  if(!hiddenPlan.value){ alert('Por favor, selecione a planilha de referência.'); return false; }
+
+  document.getElementById('horario_envio_ret').value = retorna_horario();
+
+  const form = document.getElementById('pedido_retif');
+  const submitBtn = form.querySelector('input[type="submit"]');
+  if(submitBtn){ submitBtn.disabled=true; submitBtn.value='Enviando...' }
+
+  fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: new FormData(form) })
+    .then(resp => {
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden','false');
+      btnYes.onclick = function(){
+        window.open(PLANILHA_URL, '_blank');
+        modalBackdrop.style.display = 'none';
+        setTimeout(()=> location.reload(),300);
+      };
+      btnNo.onclick = function(){
+        modalBackdrop.style.display = 'none';
+        setTimeout(()=> location.reload(),300);
+      };
+    })
+    .catch(err => {
+      alert('Erro ao enviar. Tente novamente ou contacte um membro do ministério.');
+      if(submitBtn){ submitBtn.disabled = false; submitBtn.value = 'Enviar' }
+    });
+
+  return false;
+}
 </script>
 
 </body>
